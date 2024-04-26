@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, StyleSheet, Button, View } from "react-native"; 
+import { Button, StyleSheet, Text, View } from "react-native";
 
 const HomePage = ({ navigation }) => {
 
@@ -12,7 +12,7 @@ const HomePage = ({ navigation }) => {
   return (
     <View>
       <Text>CookBooked</Text>
-      <Button onPress={handleButtonClick} title="Click me!" color="blue" />
+      <Button onPress={handleButtonClick} title="Click me!" color="#F2555A" />
     </View>
   )
 }
