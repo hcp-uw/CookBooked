@@ -1,5 +1,4 @@
 import { promises as fs } from 'fs';
-var map = new Map();
 // Firebase or supabase for database in the future
 
 
@@ -52,7 +51,7 @@ function getText(uri) {
 
 // below are all useless since using a map, moving to json file for database
 
-// this is the main function to run a parse of a json
+// this is the main function to run a parse of a json (implemented)
 function runParse(obj, notIncluded, itemsCount) {
     for (let i = 0; i < itemsCount; i++) {
         let currItem = obj.receipts[0].items[i].description;
@@ -85,7 +84,7 @@ function addToPantry(item, amount) {
     }
 }
 
-// print pantry contents
+// print pantry contents (TODO: jeewon)
 function showPantry() {
     console.log(map);
 }

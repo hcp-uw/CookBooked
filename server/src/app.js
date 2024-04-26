@@ -8,6 +8,7 @@ import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 
 import receiptsRouter from '../routes/receipts.js';
+import pantryRouter from '../routes/pantry.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -31,6 +32,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // routers
 app.use('/receipts', receiptsRouter);
+app.use('/pantry', pantryRouter);
 
 // Tells our app to listen to the given port
 app.listen(port, () => {
