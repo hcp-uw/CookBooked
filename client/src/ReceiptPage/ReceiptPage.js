@@ -1,7 +1,16 @@
+// ReceiptPage.js
+// This component renders the ReceiptPage where users can view their purchase receipts. 
+// It includes a header, a list of ReceiptCard components to display individual receipts, 
+// and a button to navigate to the VirtualPantry. The page layout and components are styled
+// according to the styles defined in ReceiptPage.style.js.
+
+// Import core React functionality from the React package.
 import React from 'react';
+// Import specific components and utilities from React Native for building the user interface.
 import { Text, StyleSheet, Button, View, Image } from "react-native"; 
+// Import the ReceiptCard component where custom card components are stored.
 import ReceiptCard from '../Common/Cards/Receipt/ReceiptCard';
-// import { useRouter } from 'expo-router'
+// Import specific styles for the ReceiptPage component
 import styles from './ReceiptPage.style'
 
 
@@ -14,9 +23,12 @@ const ReceiptPage = ({ navigation }) => {
 
     return (
         <View>
+          {/* // Header of Page  */}
           <View style={styles.header}>
             <Text style={styles.headerTitle}>Receipts</Text>
           </View>
+
+          {/* Divider line (would want to move styling to themes?) */}
           <View
             style={{
               borderColor: '#F2555A',
@@ -26,6 +38,7 @@ const ReceiptPage = ({ navigation }) => {
             }}
           />
 
+          {/* Receipt Cards Section */}
           <View style={styles.container}>
             <ReceiptCard
                 storeName={"Safeway"}

@@ -1,3 +1,8 @@
+// icons.js
+// This module is responsible for importing icon assets from the assets directory and 
+// exporting them as a single object for easy access throughout the application.
+// These icons are commonly used UI elements across different screens and components.
+
 import heart from "../../assets/icons/heart.png";
 import menu from "../../assets/icons/menu.png";
 import search from "../../assets/icons/search.png";

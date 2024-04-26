@@ -1,6 +1,12 @@
-import React from 'react'
-import { View, Text, TouchableOpacity, Image } from 'react-native'
+// ReceiptCard.js
+// This component is designed to display individual receipt details in a card format. 
+// It shows store name, date, and number of items, and is clickable to trigger navigation or further actions.
 
+// Import core React functionality from the React package.
+import React from 'react'
+// Import specific components from React Native for building the user interface.
+import { View, Text, TouchableOpacity, Image } from 'react-native'
+// Import specific styles for the ReceiptCard component
 import styles from './ReceiptCard.style'
 
 
