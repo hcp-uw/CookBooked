@@ -52,12 +52,15 @@ const ReceiptPage = ({ navigation }) => {
                 numItems={4}
                 // handleNavigate={() => router.push(``)}
             /> 
+
+            <Button onPress={handleButtonClick} title="Click me!" color="blue" />
           </View>
           <Image
             source={require('../../assets/Dubs_Story_Image.jpg')}
             style={styles.image}
           />
-          <Button onPress={handleButtonClick} title="Click me!" color="blue" />
+
+          
         </View>
     )
 }
