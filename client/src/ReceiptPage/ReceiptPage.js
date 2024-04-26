@@ -21,6 +21,12 @@ const ReceiptPage = ({ navigation }) => {
         // You can perform any action you want here
       };
 
+      const handleButtonClickRushi = () => {
+        console.log("Button clicked!");
+        navigation.navigate('rushiVirtualPantry');
+        // You can perform any action you want here
+      };
+
     return (
         <View>
           {/* // Header of Page  */}
@@ -53,7 +59,8 @@ const ReceiptPage = ({ navigation }) => {
                 // handleNavigate={() => router.push(``)}
             /> 
 
-            <Button onPress={handleButtonClick} title="Click me!" color="blue" />
+            <Button onPress={handleButtonClick} title="Go to virtual pantry" color="blue" />
+            <Button onPress={handleButtonClickRushi} title="Go to rushi's virtual pantry" color="blue" />
           </View>
           <Image
             source={require('../../assets/Dubs_Story_Image.jpg')}
