@@ -1,9 +1,9 @@
 {
-    "users": {
-        "user1": {
-            "pantry": {
-                
-            }
-        }
+  "users": {
+    "user1": {
+      "pantry": {
+        "TOSTINOS PIZZA": 12
+      }
     }
+  }
 }

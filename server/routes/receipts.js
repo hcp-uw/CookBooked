@@ -2,6 +2,8 @@ import express from 'express';
 import { promises as fs } from 'fs';
 var router = express.Router();
 
+const pantryJSON = "data/pantry.json"
+
 // for not just print out the results of receipt parsing
 router.get('/', async (req, res) => {
     const uri = req.query.receipt;
@@ -10,7 +12,7 @@ router.get('/', async (req, res) => {
         const data = await fs.readFile(`data/${uri}`);
         const obj = JSON.parse(data);
         const items = obj.receipts[0].items;
-        console.log(obj);
+        console.log(items);
 
         const doNotInclude = [
             "MRPAPER BG FEE",
@@ -18,8 +20,24 @@ router.get('/', async (req, res) => {
             "BALANCE"
         ]
 
-        const itemCounts = {};
+        const jsonData = await fs.readFile(pantryJSON);
+        const user = JSON.parse(jsonData);
 
+
+        
+
+        for (let i = 0; i < items.length; i++) {
+            let currItem = obj.receipts[0].items[i].description;
+            if (!doNotInclude.includes(currItem)) {
+                if (user.users.user1.pantry[currItem]) {
+                    user.users.user1.pantry[currItem]++;
+                } else {
+                    user.users.user1.pantry[currItem] = 1;
+                }
+            }
+        }
+
+        await fs.writeFile(pantryJSON, JSON.stringify(user, null, 2));
 
         res.send(data.toString());
     } catch (err) {
