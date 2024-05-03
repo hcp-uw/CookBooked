@@ -1,30 +1,32 @@
 import React from 'react';
 import { Text, StyleSheet, Button, View } from "react-native"; 
 
-const SomeComponent = ({ navigation }) => {
-  let number = 100;
+const HomePage = ({ navigation }) => {
 
   const handleButtonClick = () => {
     console.log("Button clicked!");
-    navigation.navigate('HomePage');
+    navigation.navigate('ReceiptPage');
     // You can perform any action you want here
+  };
+
+  const goToPantry = () => {
+    navigation.navigate('VirtualPantry');
   };
 
   return (
     <View>
-      <Text style={styles.text}>
-        This is a component.
-        I can display data, {number}, using curly brackets!
-      </Text>
+      <Text>CookBooked</Text>
       <Button onPress={handleButtonClick} title="Click me!" color="blue" />
+
+      <Button onPress={goToPantry} title='Pantry'/>
     </View>
   )
 }
 
 const styles = StyleSheet.create({
   text: {
-    color: 'red',
+    color: 'black',
   }
 });
 
-export default SomeComponent;
+export default HomePage;

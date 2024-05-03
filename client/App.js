@@ -1,32 +1,24 @@
-// import React from 'react';
-// import { NavigationContainer } from '@react-navigation/native';
-// import { createNativeStackNavigator } from '@react-navigation/native-stack';
-// import Home from './src/tabs/Home';
-// import Add from './src/tabs/Add';
-// import Pantry from './src/tabs/Pantry';
-// import Search from './src/tabs/Search';
-// import Receipts from './src/tabs/Receipts';
+import React from 'react';
+import { StyleSheet, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import SomeComponent from './src/SomeComponent';
+import HomePage from './src/HomePage/HomePage';
+import ReceiptPage from './src/ReceiptPage/ReceiptPage';
+import VirtualPage from './src/VirtualPantry/VirtualPantry';
+import rushiVirtualPantryPage from './src/VirtualPantry/rushiVirtualPantry';
 
-// const Stack = createNativeStackNavigator(); 
+const Stack = createNativeStackNavigator();
 
-// export default function App() {
-//   return (
-//     <NavigationContainer>
-//       <Stack.Navigator>
-//         {/* <Stack.Screen
-//           name="navbar" // You can name it whatever you want
-//           component={TabNavigation} // Render the bottom tab navigation
-//           options={{ headerShown: false }} // Hide the header bar
-//         /> */}
-//         <Stack.Screen name="Home" component={Home} />
-//       </Stack.Navigator>
-//     </NavigationContainer>
-//   );
-// }
-import { Redirect } from 'expo-router';
-
-const StartPage = () => {
-  return <Redirect href="/home" />;
+export default function App() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="HomePage" component={HomePage} />
+        <Stack.Screen name="ReceiptPage" component={ReceiptPage} />
+        <Stack.Screen name="VirtualPantry" component={VirtualPage} />
+        <Stack.Screen name="rushiVirtualPantry" component={rushiVirtualPantryPage} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
 }
-
-export default StartPage;
