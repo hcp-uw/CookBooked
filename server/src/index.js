@@ -1,10 +1,13 @@
+// all this will be in client actually, to interact with the buttons, some relative paths might have
+// to be changed later
+ 
 import { promises as fs } from 'fs';
 // Firebase or supabase for database in the future
 
 
 //to test use this urL: http://localhost:3000/receipts?receipt=receipt.json
-async function getReceipt() {
-    let uri = document.getElementById("receipt_input").value;
+async function previewReceipt() {
+    let uri = document.getElementById("receipt_input").value; // doesn't connect to anything rn
     try {
         let response = await fetch("/receipts?receipt=" + uri);
         if (response.ok) {
@@ -17,6 +20,38 @@ async function getReceipt() {
         console.error('Error fetching data:', error);
     }
 }
+
+async function postReceipt() {
+    let uri = document.getElementById("receipt_input").value; // doesn't connect to anything rn
+    try {
+        await fetch("/receipts", {
+            method: "POST",
+            body: {uri: uri}
+        });
+    } catch (error) {
+        console.error('Error posting data:', error);
+    }
+    document.getElementById("postStatus").innerText = "successfully uploaded"
+}
+
+// to test use url like: http://localhost:3000/pantry?item=onions&quantity=2
+async function addToPantry() {
+    let item = document.getElementById("item_input").value //these don't connect to any front end yet either
+    let quantity = document.getElementById("quantity_input").value
+    try {
+        await fetch("/receipts", {
+            method: "POST",
+            body: {item: item, quantity: quantity}
+        });
+    } catch (error) {
+        console.error('Error posting data:', error);
+    }
+}
+
+
+
+
+
 
 // display the receipt in the front end
 function displayText(receipt){
