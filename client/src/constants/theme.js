@@ -5,12 +5,12 @@
 
 // Define color palette for the application to maintain consistency in UI design.
 const COLORS = {
-  primary: "#312651",
-  secondary: "#444262",
+  primary: "#F2555A",
+  secondary: "#FFDADB",
   tertiary: "#FF7754",
 
-  gray: "#83829A",
-  gray2: "#C1C0C8",
+  gray: "#D9D9D9",
+  gray2: "#F6F5F3",
 
   white: "#F3F4F8",
   lightWhite: "#FAFAFC",
@@ -18,9 +18,9 @@ const COLORS = {
 
 // Define font styles using specific typefaces to ensure consistent typography across the app.
 const FONT = {
-  regular: "DMRegular",
-  medium: "DMMedium",
-  bold: "DMBold",
+  regular: "LexendDeca-Regular",
+  medium: "LexendDeca-Medium",
+  bold: "LexendDeca-Bold",
 };
 
 // Standardize font sizes across the app to maintain typographic hierarchy and readability.
@@ -58,4 +58,5 @@ const SHADOWS = {
 };
 
 // Export the defined style constants to be used throughout the application.
-export { COLORS, FONT, SIZES, SHADOWS };
+export { COLORS, FONT, SHADOWS, SIZES };
+

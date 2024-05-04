@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 
-import { COLORS, SHADOWS, SIZES } from "../../../constants";
+import { COLORS, FONT, SHADOWS, SIZES } from "../../../constants";
 
 const styles = StyleSheet.create({
   container: {
@@ -34,19 +34,19 @@ const styles = StyleSheet.create({
   },
   itemName: {
     fontSize: SIZES.large,
-    fontFamily: "DMBold",
+    fontFamily: FONT.bold,
     color: COLORS.primary,
   },
   lastAdded: {
     fontSize: SIZES.small + 2,
-    fontFamily: "DMRegular",
+    fontFamily: FONT.regular,
     color: COLORS.gray,
     marginTop: 3,
     // textTransform: "capitalize",
   },
   numItems: {
     fontSize: SIZES.small + 2,
-    fontFamily: "DMRegular",
+    fontFamily: FONT.regular,
     color: COLORS.black,
     marginTop: 10,
     // textTransform: "capitalize",
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
     // borderWidth: 1,
     borderRadius: 4,
     overflow: 'hidden',
-    backgroundColor: '#F2555A',
+    backgroundColor: COLORS.primary,
     justifyContent: "space-around",
     alignItems: "center",
     marginLeft: "auto",

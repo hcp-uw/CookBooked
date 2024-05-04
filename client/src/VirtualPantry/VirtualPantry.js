@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { Text, StyleSheet, Button, View, ScrollView } from "react-native"; 
-import styles from './VirtualPantry.style';
-import PantryCard from '../Common/Cards/Pantry/PantryCard';
-import { getDatabase, ref, push, onValue } from "firebase/database";
+import { getDatabase, onValue, ref } from "firebase/database";
+import React, { useEffect, useState } from 'react';
+import { ScrollView, StyleSheet, Text, View } from "react-native";
 import firebase from "../../firebase";
+import PantryCard from '../Common/Cards/Pantry/PantryCard';
+import styles from './VirtualPantry.style';
 
 
 const VirtualPantry = ({ navigation }) => {

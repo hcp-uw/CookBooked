@@ -12,7 +12,7 @@ const HomePage = ({ navigation }) => {
   return (
     <View>
       <Text>CookBooked</Text>
-      <Button onPress={handleButtonClick} title="Click me!" color="#F2555A" />
+      <Button onPress={handleButtonClick} title="Click me!" color={COLORS.primary} />
     </View>
   )
 }
@@ -20,6 +20,7 @@ const HomePage = ({ navigation }) => {
 const styles = StyleSheet.create({
   text: {
     color: 'black',
+    fontFamily: 'LexendDeca'
   }
 });
 

@@ -1,16 +1,15 @@
 // Import core React functionality from the React package.
-import React from 'react'
+import React from 'react';
 // Import specific components from React Native for building the user interface.
-import { View, Text, TouchableOpacity, Image } from 'react-native'
+import { Text, TouchableOpacity, View } from 'react-native';
 // Import specific styles for the ReceiptCard component
-import styles from './PantryCard.style'
-import { getDatabase, ref, push, update } from "firebase/database";
+import { getDatabase, ref, update } from "firebase/database";
 import firebase from "../../../../firebase";
+import styles from './PantryCard.style';
 
 
 const PantryCard = ({ itemId, itemName, lastAdded, numItems, handleNavigate }) => {
     // console.log("Rendering ReceiptCard", storeName, date, numItems);
-
 
     const updateQuantity = (amount) => {
         const updatedNum = Math.max(0, numItems + amount);
