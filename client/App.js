@@ -1,6 +1,8 @@
+import React from 'react';
+import { StyleSheet, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import React from 'react';
+import SomeComponent from './src/SomeComponent';
 import HomePage from './src/HomePage/HomePage';
 import ReceiptPage from './src/ReceiptPage/ReceiptPage';
 import VirtualPage from './src/VirtualPantry/VirtualPantry';
