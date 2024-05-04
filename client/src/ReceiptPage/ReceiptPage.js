@@ -12,78 +12,7 @@ import { Text, StyleSheet, Button, View, Image, Modal, Pressable } from "react-n
 import ReceiptCard from '../Common/Cards/Receipt/ReceiptCard';
 // Import specific styles for the ReceiptPage component
 import styles from './ReceiptPage.style'
-
-const PopUp = ({ popUpVisible, setPopUpVisible }) => {
-  // const [popUpVisible, setPopUpVisible] = useState(true);
-  return (
-    <View style={stylesPopUp.centeredView}>
-      <Modal
-        animationType="slide"
-        transparent={true}
-        visible={popUpVisible}
-        onRequestClose={() => {
-          console.log('Modal has been closed.');
-          setPopUpVisible(false);
-        }}>
-        <View style={stylesPopUp.centeredView}>
-          <View style={stylesPopUp.modalView}>
-            <Text style={stylesPopUp.modalText}>Hello World!</Text>
-            <Pressable
-              style={[stylesPopUp.button, stylesPopUp.buttonClose]}
-              onPress={() => setPopUpVisible(false)}>
-              <Text style={stylesPopUp.textStyle}>Hide Modal</Text>
-            </Pressable>
-          </View>
-        </View>
-      </Modal>
-    </View>
-  )
-};
-
-const stylesPopUp = StyleSheet.create({
-  centeredView: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 22,
-  },
-  modalView: {
-    margin: 20,
-    backgroundColor: 'white',
-    borderRadius: 20,
-    padding: 35,
-    alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
-  },
-  button: {
-    borderRadius: 20,
-    padding: 10,
-    elevation: 2,
-  },
-  buttonOpen: {
-    backgroundColor: '#F194FF',
-  },
-  buttonClose: {
-    backgroundColor: '#2196F3',
-  },
-  textStyle: {
-    color: 'white',
-    fontWeight: 'bold',
-    textAlign: 'center',
-  },
-  modalText: {
-    marginBottom: 15,
-    textAlign: 'center',
-  },
-});
-
+import PopUp from '../PopUp/PopUp'
 
 const ReceiptPage = ({ navigation }) => {
   const [popUpVisible, setPopUpVisible] = useState(false);
@@ -91,8 +20,6 @@ const ReceiptPage = ({ navigation }) => {
   const togglePopUp = () => {
     setPopUpVisible(!popUpVisible)
   }
-
-
 
   const handleButtonClick = () => {
       console.log("Button clicked!");
