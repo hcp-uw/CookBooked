@@ -5,14 +5,14 @@
 
 // Define color palette for the application to maintain consistency in UI design.
 const COLORS = {
-  primary: "#312651",
-  secondary: "#444262",
+  primary: "#F2555A",
+  secondary: "#FFDADB",
   tertiary: "#FF7754",
 
-  gray: "#83829A",
-  gray2: "#C1C0C8",
+  gray: "#848383",
+  gray2: "#CCCCCC",
 
-  white: "#F3F4F8",
+  white: "#FFFFFF",
   lightWhite: "#FAFAFC",
 };
 
@@ -30,7 +30,7 @@ const SIZES = {
   medium: 16,
   large: 20,
   xLarge: 24,
-  xxLarge: 32,
+  xxLarge: 30,
 };
 
 // Define shadow styles to add depth to UI components.
@@ -58,4 +58,5 @@ const SHADOWS = {
 };
 
 // Export the defined style constants to be used throughout the application.
-export { COLORS, FONT, SIZES, SHADOWS };
+export { COLORS, FONT, SHADOWS, SIZES };
+
