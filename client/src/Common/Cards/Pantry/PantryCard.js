@@ -1,3 +1,9 @@
+// PantryCard.js
+// This component renders an individual PantryCard, displaying details of a pantry item such as
+// its name, the date it was last added, and its current quantity. It also provides buttons to
+// adjust the quantity of the item, calling the handleUpdateQuantity function passed down from
+// the parent component.
+
 // Import core React functionality from the React package.
 import React from 'react'
 // Import specific components from React Native for building the user interface.
@@ -8,24 +14,17 @@ import { getDatabase, ref, push, update } from "firebase/database";
 import firebase from "../../../../firebase";
 
 
-const PantryCard = ({ itemId, itemName, lastAdded, numItems, handleNavigate }) => {
+const PantryCard = ({ itemId, itemName, lastAdded, numItems, handleUpdateQuantity, handleNavigate }) => {
     // console.log("Rendering ReceiptCard", storeName, date, numItems);
 
 
+    /**
+     * This function calls the handleUpdateQuantity function passed down from the parent
+     * component, VirtualPantry, with the itemId and the amount to adjust the quantity by.
+     * @param amount - The amount to adjust the quantity by. Can be positive or negative.
+     */      
     const updateQuantity = (amount) => {
-        const updatedNum = Math.max(0, numItems + amount);
-    
-        const db = getDatabase(firebase);
-        const itemRef = ref(db, 'foodItems/' + itemId);
-    
-        update(itemRef, {
-            numItems: updatedNum
-        }).then(() => {
-            console.log("Updated successfully!");
-            setNumItems(updatedNum);  // Update local state to trigger re-render
-        }).catch(error => {
-            console.error("Error updating item: ", error);
-        });
+        handleUpdateQuantity(itemId, amount);
     };
 
     return (
