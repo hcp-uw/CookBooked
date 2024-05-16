@@ -11,10 +11,6 @@ import CheckBoxed from '../CheckBox/CheckBox'
 const PopUp = ({ popUpVisible, setPopUpVisible, changePopUp }) => {
     const [checkedVisible, setCheckedVisible] = useState(false);
 
-    const toggleCheckBox = () => {
-        setCheckedVisible(!checkedVisible)
-      }
-
     return (
       <View style={styles.centeredView}>
         <Modal
