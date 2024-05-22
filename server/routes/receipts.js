@@ -2,71 +2,77 @@ import express from 'express';
 import { promises as fs } from 'fs';
 var router = express.Router();
 
-router.get('/', async(req, res) => {
+// getting the precreated receipt data for now
+const pantryJSON = "data/pantry.json"
+
+// Prints out the receipt data, returns error code and message if fails
+router.get('/', async (req, res) => {
     const uri = req.query.receipt;
-    fs.readFile(`data/${uri}`, 'utf-8', function (err, data) {
-        if (err) {
-            console.error('Error reading file:', err);
-            res.status(500).send('Error reading file');
-            return;
+    try {
+        const data = await fs.readFile(`data/${uri}`);
+        const obj = JSON.parse(data);
+        const items = obj.receipts[0].items;
+        const doNotInclude = [
+            "MRPAPER BG FEE",
+            "TAX",
+            "BALANCE"
+        ]
+
+        const map = new Map();
+        for (let i = 0; i < items.length; i++) {
+            let currItem = obj.receipts[0].items[i].description;
+            if (!doNotInclude.includes(currItem)) {
+                if (map.has(currItem)) {
+                    map.set(currItem, map.get(currItem) + 1);
+                } else {
+                    map.set(currItem, 1);
+                }
+            }
         }
-    
-        try {
-            const obj = JSON.parse(data);
-            const items = obj.receipts[0].items;
-            //console.log(obj);
-        
-            const doNotInclude = [
-                "MRPAPER BG FEE",
-                "TAX",
-                "BALANCE"
-            ]
+        const mapArray = Array.from(map);
+        const mapString = mapArray.map(([key, value]) => `${key}: ${value}`).join('\n');
+        res.send(mapString);
+    } catch (err) {
+        console.error('Error reading file:', err);
+        res.status(500).send('Error reading file');
+    }
+})
 
-            const itemCounts = {};
+// this will add the items on the receipt to the json under user1
+router.post('/', async (req, res) => {
+    const uri = req.body.uri;
+    console.log(uri);
+    try {
+        const data = await fs.readFile(`data/${uri}`);
+        const obj = JSON.parse(data);
+        const items = obj.receipts[0].items;
+        const doNotInclude = [
+            "MRPAPER BG FEE",
+            "TAX",
+            "BALANCE"
+        ]
 
-            items.forEach(item => {
-                const currItem = item.description;
-                if (!doNotInclude.includes(currItem)) {
-                    if (itemCounts[currItem]) {
-                        itemCounts[currItem]++;
-                    } else {
-                        itemCounts[currItem] = 1;
-                    }
+        const jsonData = await fs.readFile(pantryJSON);
+        const user = JSON.parse(jsonData);
+
+        for (let i = 0; i < items.length; i++) {
+            let currItem = obj.receipts[0].items[i].description;
+            if (!doNotInclude.includes(currItem)) {
+                if (user.users.user1.pantry[currItem]) {
+                    user.users.user1.pantry[currItem]++;
+                } else {
+                    user.users.user1.pantry[currItem] = 1;
                 }
-            });
-
-            fs.readFile(`data/pantry.json`, 'utf-8', function (err, pantryData) {
-                if (err) {
-                    console.error('Error reading pantry file:', err);
-                    res.status(500).send('Error reading pantry file');
-                    return;
-                }
-
-                try {
-                    const db = JSON.parse(pantryData);
-                    db.users.user1.pantry = itemCounts;
-
-                    // Write back to pantry.json
-                    fs.writeFile(`data/pantry.json`, JSON.stringify(db, null, 4), 'utf8', (err) => {
-                        if (err) {
-                            console.error('Error writing pantry file:', err);
-                            res.status(500).send('Error writing pantry file');
-                            return;
-                        }
-                        console.log('Pantry file successfully updated.');
-                        res.send("Success");
-                    });
-                } catch (error) {
-                    console.error('Error parsing pantry JSON:', error);
-                    res.status(500).send('Error parsing pantry JSON');
-                }
-            });
-        } catch (error) {
-            console.error('Error parsing JSON:', error);
-            res.status(500).send('Error parsing JSON');
+            }
         }
-    });
+
+        await fs.writeFile(pantryJSON, JSON.stringify(user, null, 2));
+
+        res.json({status: "success"});
+    } catch (err) {
+        console.error('Error reading file:', err);
+        res.status(500).send('Error reading file');
+    }
 });
-
 
 export default router;
