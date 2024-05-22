@@ -12,3 +12,4 @@ import { COLORS, FONT, SIZES, SHADOWS } from "./theme";
 
 // Export all imported modules and constants to enable their use across different parts of the application.
 export { icons, COLORS, FONT, SIZES, SHADOWS };
+

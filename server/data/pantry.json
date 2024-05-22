@@ -1,9 +1,13 @@
 {
-    "users": {
-        "user1": {
-            "pantry": {
-                
-            }
-          }
+  "users": {
+    "user1": {
+      "pantry": {
+        "TOSTINOS PIZZA": 4,
+        "Onions": 5,
+        "Cucumber": 2,
+        "Orange": 9,
+        "Carrot": 4
+      }
     }
+  }
 }
