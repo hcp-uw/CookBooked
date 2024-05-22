@@ -10,5 +10,28 @@ import icons from "./icons";
 // Import core styling constants from the theme module, which define colors, fonts, sizes, and shadows.
 import { COLORS, FONT, SIZES, SHADOWS } from "./theme";
 
+async function loadPantry() {
+    try {
+        let response = await fetch('http://localhost:3000/pantry');
+        let data = await response.json();
+        return data;
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        return null;
+    }
+}
+
+async function getReceiptItems() {
+    try {
+        let response = await fetch('http://localhost:3000/receipts?receipt=receipt.json');
+        let data = await response.text();
+        return data;
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        return null;
+    }
+}
+
 // Export all imported modules and constants to enable their use across different parts of the application.
-export { icons, COLORS, FONT, SIZES, SHADOWS };
+export { icons, COLORS, FONT, SIZES, SHADOWS, loadPantry };
+

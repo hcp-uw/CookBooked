@@ -2,8 +2,10 @@ import express from 'express';
 import { promises as fs } from 'fs';
 var router = express.Router();
 
+// getting the precreated receipt data for now
 const pantryJSON = "data/pantry.json"
 
+// Prints out the receipt data, returns error code and message if fails
 router.get('/', async (req, res) => {
     const uri = req.query.receipt;
     try {
@@ -36,7 +38,7 @@ router.get('/', async (req, res) => {
     }
 })
 
-// for not just print out the results of receipt parsing
+// this will add the items on the receipt to the json under user1
 router.post('/', async (req, res) => {
     const uri = req.body.uri;
     console.log(uri);

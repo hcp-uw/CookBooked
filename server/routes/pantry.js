@@ -4,6 +4,7 @@ var router = express.Router();
 
 const pantryJSON = "data/pantry.json"
 
+// add specific items with quantities to json
 router.post('/add', async (req, res) => {
     let item = req.body.item
     let quantity = parseInt(req.body.quantity);
@@ -21,6 +22,7 @@ router.post('/add', async (req, res) => {
     res.json({status: "success"});
 });
 
+// remove specific items with quantities from json
 router.post('/remove', async (req, res) => {
     let item = req.body.item
     let quantity = parseInt(req.body.quantity);
@@ -42,9 +44,25 @@ router.post('/remove', async (req, res) => {
     }
 });
 
+// prints out whats in the pantry
 router.get('/', async (req, res) => {
-    console.log('TODO Jeewon: print out json contents in nice way');
-    res.send("TODO Jeewon: print out json contents in nice way")
+    try {
+        const jsonData = await fs.readFile(pantryJSON);
+        const data = JSON.parse(jsonData);
+
+        const username = Object.keys(data.users)[0];
+        const pantry = data.users[username].pantry;
+
+        const pantryContents = {
+            username: username,
+            pantry: pantry
+        };
+
+        res.json(pantryContents);
+    } catch (error) {
+        console.error('Error reading pantry data:', error);
+        res.status(500).json({ error: "Failed to read pantry data" });
+    }
 });
 
 

@@ -31,10 +31,12 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // routers
+// if working in backend, please add router then go to routes folder and add code there
 app.use('/receipts', receiptsRouter);
 app.use('/pantry', pantryRouter);
 
 // Tells our app to listen to the given port
+// for now we will run on port 3000
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
