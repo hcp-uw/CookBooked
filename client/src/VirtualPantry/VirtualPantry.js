@@ -10,10 +10,10 @@ import PantryCard from '../Common/Cards/Pantry/PantryCard';
 import { getDatabase, ref, push, onValue, update } from "firebase/database";
 import firebase from "../../firebase";
 
-
 const VirtualPantry = ({ navigation }) => {
   // State to store the fetched items
   const [items, setItems] = useState([]);
+  const [pantryText, setPantryText] = useState('');
 
   useEffect(() => {
     const db = getDatabase(firebase);
@@ -78,12 +78,173 @@ const VirtualPantry = ({ navigation }) => {
       });
     };
 
+    // This is for setting the pantry information at the top of the page
+    // useEffect(() => {
+    //     const init = async () => {
+    //         try {
+    //             const data = await loadPantry();
+    //             setPantryText(formatPantryText(data));
+    //         } catch (error) {
+    //             console.error('Error fetching data:', error);
+    //             setPantryText('No data available');
+    //         }
+    //     };
+    //     init();
+    // }, []);
 
-    return (
+    const formatPantryText = (data) => {
+        if (!data) return 'No data available';
+        let pantryText = `${data.username}'s Pantry Contents:\n`;
+        for (let [item, quantity] of Object.entries(data.pantry)) {
+            pantryText += `${item}: ${quantity}\n`;
+        }
+        return pantryText;
+    };
+
+    async function loadPantry() {
+      try {
+          let response = await fetch('http://localhost:3000/pantry');
+          let data = await response.json();
+          return data;
+      } catch (error) {
+          console.error('Error fetching data:', error);
+          return null;
+      }
+  }
+  
+  async function getReceiptItems() {
+      try {
+          let response = await fetch('http://localhost:3000/receipts?receipt=receipt.json');
+          let data = await response.text();
+          return data;
+      } catch (error) {
+          console.error('Error fetching data:', error);
+          return null;
+      }
+  }
+
+  async function postReceiptItems() {
+      let uri = "receipt.json"
+      try {
+          await fetch("http://localhost:3000/receipts", {
+              method: "POST",
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({uri: uri})
+          });
+      } catch (error) {
+          console.error('Error posting data:', error);
+      }
+  }
+
+  async function addToPantry(item, amount) {
+    try {
+      await fetch("http://localhost:3000/pantry/add", {
+          method: "POST",
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({item: item, quantity: amount})
+      });
+  } catch (error) {
+      console.error('Error posting data:', error);
+  }
+}
+
+  async function remove_from_pantry(item, amount) {
+      try {
+        await fetch("http://localhost:3000/pantry/remove", {
+            method: "POST",
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({item: item, quantity: amount})
+        });
+    } catch (error) {
+        console.error('Error posting data:', error);
+    }
+  }
+
+  const handleRefresh = async (type) => {
+    if (type === "pantry") {
+      try {
+        const data = await loadPantry();
+        setPantryText(formatPantryText(data));
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        setPantryText('No data available');
+      }
+    } else if (type === "get_receipt") {
+      try {
+        const data = await getReceiptItems();
+        setPantryText(data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        setPantryText('No data available');
+      }
+    } else if (type === "post_receipt") {
+      try {
+        const response = await postReceiptItems();
+        setPantryText("Pantry Updated");
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        setPantryText('No data available');
+      }
+    } else if (type === "add_to_pantry") {
+      try {
+        const response = await addToPantry("Carrot", 5);
+        setPantryText("Pantry Updated");
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        setPantryText('No data available');
+      }
+    } else if (type === "remove_from_pantry") {
+      try {
+        const response = await remove_from_pantry("Carrot", 3);
+        setPantryText("Pantry Updated");
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        setPantryText('No data available');
+      }
+    }
+  };
+
+  return (
     <View>
       {/* // Header of Page  */}
       <View style={styles.header}>
         <Text style={styles.headerTitle}>Your Pantry</Text>
+        <Button
+          onPress={() => handleRefresh("pantry")}
+          title="Get Pantry Items"
+          color="#841584"
+          accessibilityLabel="Button to refresh pantry"
+        />
+        <Button
+          onPress={() => handleRefresh("get_receipt")}
+          title="Get Receipt Items"
+          color="#841584"
+          accessibilityLabel="Button to get receipt items"
+        />
+        <Button
+          onPress={() => handleRefresh("post_receipt")}
+          title="Add Receipt Items to Pantry"
+          color="#841584"
+          accessibilityLabel="Button to get add items from receipt to pantry"
+        />
+        <Button
+          onPress={() => handleRefresh("add_to_pantry")}
+          title="Add Items to Pantry"
+          color="#841584"
+          accessibilityLabel="Button to get add items to pantry"
+        />
+        <Button
+          onPress={() => handleRefresh("remove_from_pantry")}
+          title="Remove Items from Pantry"
+          color="#841584"
+          accessibilityLabel="Button to remove items from pantry"
+        />
       </View>
 
       {/* Divider line (would want to move styling to themes?) */}
@@ -95,6 +256,10 @@ const VirtualPantry = ({ navigation }) => {
           margin: 10
         }}
       />
+
+      <View>
+        <Text>{pantryText}</Text>
+      </View>
 
       {/* Pantry Cards Section */}
       <ScrollView style={styles.container}>
@@ -119,7 +284,7 @@ const VirtualPantry = ({ navigation }) => {
             ))}
       </ScrollView>
     </View>
-    )
+  )
 }
 
 

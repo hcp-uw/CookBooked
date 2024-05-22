@@ -68,7 +68,7 @@ router.post('/', async (req, res) => {
 
         await fs.writeFile(pantryJSON, JSON.stringify(user, null, 2));
 
-        res.json({status: "success"});
+        res.status(200).json({status: "success"});
     } catch (err) {
         console.error('Error reading file:', err);
         res.status(500).send('Error reading file');
