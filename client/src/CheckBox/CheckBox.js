@@ -17,9 +17,8 @@ const CheckBoxed = ({checkedVisible, setCheckedVisible}) => {
           onValueChange={setCheckedVisible}
           style={styles.checkbox}
         />
-        <Text style={styles.label}>Do you like React Native?</Text>
+        <Text style={styles.label}>Apple</Text>
       </View>
-      <Text>Is CheckBox selected: {checkedVisible ? '✅' : '❌'}</Text>
     </View>
   );
 };
