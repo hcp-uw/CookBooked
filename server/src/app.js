@@ -9,6 +9,7 @@ import { dirname } from 'path';
 
 import receiptsRouter from '../routes/receipts.js';
 import pantryRouter from '../routes/pantry.js';
+import protectedRouteRouter from '../routes/protectedRoute.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -34,6 +35,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // if working in backend, please add router then go to routes folder and add code there
 app.use('/receipts', receiptsRouter);
 app.use('/pantry', pantryRouter);
+app.use('/protected-route', protectedRouteRouter);
 
 // Tells our app to listen to the given port
 // for now we will run on port 3000
