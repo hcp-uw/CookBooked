@@ -1,5 +1,7 @@
-// import profile from "../assets/images/kemal.jpg";
+import circlePlaceholder from "../../assets/placeholders/CBPlaceholderCircle.png";
+import avatar from "../../assets/placeholders/Avatar.png";
 
-// export default {
-//   profile,
-// };
+export default {
+  circlePlaceholder,
+  avatar
+};
