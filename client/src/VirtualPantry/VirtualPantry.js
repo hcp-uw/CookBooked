@@ -4,11 +4,12 @@
 // and functionality to update the quantity of each item. 
 
 import React, { useState, useEffect } from 'react';
-import { Text, StyleSheet, Button, View, ScrollView } from "react-native"; 
+import { Text, StyleSheet, Button, View, ScrollView, Image} from "react-native"; 
 import styles from './VirtualPantry.style';
 import PantryCard from '../Common/Cards/Pantry/PantryCard';
 import { getDatabase, ref, push, onValue, update } from "firebase/database";
 import firebase from "../../firebase";
+import { DIVIDER, images } from '../constants';
 
 const VirtualPantry = ({ navigation }) => {
   // State to store the fetched items
@@ -215,7 +216,12 @@ const VirtualPantry = ({ navigation }) => {
       {/* // Header of Page  */}
       <View style={styles.header}>
         <Text style={styles.headerTitle}>Your Pantry</Text>
-        <Button
+        <Image
+          source={images.avatar}
+          resizeMode="contain"
+          style={styles.userProfileImage}
+        />
+        {/* <Button
           onPress={() => handleRefresh("pantry")}
           title="Get Pantry Items"
           color="#841584"
@@ -244,22 +250,15 @@ const VirtualPantry = ({ navigation }) => {
           title="Remove Items from Pantry"
           color="#841584"
           accessibilityLabel="Button to remove items from pantry"
-        />
+        /> */}
       </View>
 
       {/* Divider line (would want to move styling to themes?) */}
-      <View
-        style={{
-          borderColor: '#F2555A',
-          borderBottomWidth: StyleSheet.hairlineWidth,
-          borderWidth: 1,
-          margin: 10
-        }}
-      />
+      <View style={DIVIDER.header}/>
 
-      <View>
+      {/* <View>
         <Text>{pantryText}</Text>
-      </View>
+      </View> */}
 
       {/* Pantry Cards Section */}
       <ScrollView style={styles.container}>

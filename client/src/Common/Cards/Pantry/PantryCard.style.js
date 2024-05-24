@@ -1,20 +1,27 @@
 import { StyleSheet } from "react-native";
 
-import { COLORS, SHADOWS, SIZES } from "../../../constants";
+import { COLORS, SHADOWS, SIZES, FONT } from "../../../constants";
 
 const styles = StyleSheet.create({
+  shadowContainer: {
+    ...SHADOWS.medium,
+    borderRadius: SIZES.small,
+    // marginBottom: 10,
+  },
   container: {
     // flex: 1,
-    justifyContent: "space-between",
+    // justifyContent: "space-between",
     alignItems: "center",
     flexDirection: "row",
     padding: SIZES.medium,
     borderRadius: SIZES.small,
-    backgroundColor: "#FFF",
-    ...SHADOWS.medium,
-    shadowColor: COLORS.white,
-    height: 150,
+    backgroundColor: COLORS.white,
+    margin: 10,
+    // ...SHADOWS.small,
+    // shadowColor: COLORS.black,
+    height: 140,
     marginBottom: 10,
+    position: 'relative'
   },
   logoContainer: {
     width: 110,
@@ -25,23 +32,32 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   logoImage: {
-    width: "70%",
-    height: "70%",
+    width: "80%",
+    height: "80%",
   },
   textContainer: {
     flex: 1,
-    marginHorizontal: SIZES.medium,
+    margin: SIZES.medium,
   },
   itemName: {
     fontSize: SIZES.large,
-    fontFamily: "DMBold",
-    color: COLORS.primary,
+    fontFamily: FONT.bold,
+    fontWeight: '600',
+    color: COLORS.black,
   },
-  lastAdded: {
-    fontSize: SIZES.small + 2,
+  contentContainer: {
+    marginBottom: 30,
+  },
+  contentTitle: {
+    fontSize: SIZES.small + 1,
     fontFamily: "DMRegular",
     color: COLORS.gray,
     marginTop: 3,
+    fontWeight: '600'
+    // textTransform: "capitalize",
+  },
+  contentDetail: {
+    fontWeight: '90'
     // textTransform: "capitalize",
   },
   numItems: {
@@ -87,6 +103,29 @@ const styles = StyleSheet.create({
     backgroundColor: 'black',
     // Stretch to fill the container height
     alignSelf: 'stretch'
+  },
+  viewDetailsButton: {
+    position: 'absolute',
+    bottom: -5,
+    right: -0,
+    // flexDirection: 'row',
+    // borderColor: '#ccc',
+    // borderWidth: 1,
+    borderRadius: 4,
+    overflow: 'hidden',
+    backgroundColor: COLORS.secondary,
+    justifyContent: "center",
+    alignItems: "center",
+    marginLeft: "auto",
+    width: '45%',
+    height: '25%',
+    borderRadius: 8,
+    // fontWeight: 500
+  },
+
+  viewDetailsText: {
+    color: COLORS.tertiary,
+    fontSize: SIZES.small
   }
 });
 
