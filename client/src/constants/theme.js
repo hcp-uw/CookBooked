@@ -3,6 +3,8 @@
 // It includes color schemes, typography settings, sizing dimensions, and shadow styles. 
 // These constants ensure a consistent look and feel across all components and screens.
 
+import { StyleSheet } from "react-native";
+
 // Define color palette for the application to maintain consistency in UI design.
 const COLORS = {
   primary: "#F2555A",
@@ -14,6 +16,8 @@ const COLORS = {
 
   white: "#FFFFFF",
   lightWhite: "#FAFAFC",
+
+  black: "#000000"
 };
 
 // Define font styles using specific typefaces to ensure consistent typography across the app.
@@ -36,20 +40,20 @@ const SIZES = {
 // Define shadow styles to add depth to UI components.
 const SHADOWS = {
   small: {
-    shadowColor: "#000",
+    shadowColor: COLORS.black,
     shadowOffset: {
       width: 0,
-      height: 2,
+      height: 5,
     },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
+    shadowOpacity: 0.20,
+    shadowRadius: 5,
     elevation: 2,
   },
   medium: {
-    shadowColor: "#000",
+    shadowColor: COLORS.black,
     shadowOffset: {
       width: 0,
-      height: 2,
+      height: 7,
     },
     shadowOpacity: 0.25,
     shadowRadius: 5.84,
@@ -57,6 +61,16 @@ const SHADOWS = {
   },
 };
 
+const DIVIDER = {
+  header: {
+    borderColor: COLORS.primary,
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderWidth: 1.5,
+    margin: SIZES.xSmall,
+    marginHorizontal: SIZES.large
+  }
+}
+
 // Export the defined style constants to be used throughout the application.
-export { COLORS, FONT, SHADOWS, SIZES };
+export { COLORS, FONT, SHADOWS, SIZES, DIVIDER };
 

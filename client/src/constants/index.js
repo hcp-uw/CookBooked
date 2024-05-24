@@ -6,10 +6,11 @@
 
 // Import the 'icons' module which includes all icon graphics used across the app.
 import icons from "./icons";
+import images from "./images";
 
 // Import core styling constants from the theme module, which define colors, fonts, sizes, and shadows.
-import { COLORS, FONT, SIZES, SHADOWS } from "./theme";
+import { COLORS, FONT, SIZES, SHADOWS, DIVIDER } from "./theme";
 
 // Export all imported modules and constants to enable their use across different parts of the application.
-export { icons, COLORS, FONT, SIZES, SHADOWS };
+export { icons, images, COLORS, FONT, SIZES, SHADOWS, DIVIDER };
 
