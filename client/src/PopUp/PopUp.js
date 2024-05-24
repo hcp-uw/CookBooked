@@ -24,7 +24,7 @@ const PopUp = ({ popUpVisible, setPopUpVisible, changePopUp }) => {
           <View style={styles.centeredView}>
             <View style={styles.modalView}>
               <Text style={styles.modalText}>Hello World!</Text>
-              <CheckBoxed checkedVisible={checkedVisible} setCheckedVisible={setCheckedVisible}/>
+              <CheckBoxed numberOfItems={5}/>
               <Pressable
                 style={[styles.button, styles.buttonClose]}
                 onPress={() => setPopUpVisible(false)}>
