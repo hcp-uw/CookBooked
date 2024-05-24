@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { CheckBox, Text, View, Modal, Pressable } from "react-native"; 
 // Import specific styles for the ReceiptPage component
 import styles from './PopUp.style'
-import CheckBoxed from '../CheckBox/CheckBox'
+import CheckBoxed from '../Loop/Loop'
 
 // PopUpVisible (boolean for if we can see it) and setPopUpVisible (update popUpVisible)
 // are hooks(properties) that control the visibility of the PopUp.
