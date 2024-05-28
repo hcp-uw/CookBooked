@@ -9,7 +9,6 @@ import CheckBoxed from '../Loop/Loop'
 // PopUpVisible (boolean for if we can see it) and setPopUpVisible (update popUpVisible)
 // are hooks(properties) that control the visibility of the PopUp.
 const PopUp = ({ popUpVisible, setPopUpVisible, changePopUp }) => {
-    const [checkedVisible, setCheckedVisible] = useState(false);
 
     return (
       <View style={styles.centeredView}>
@@ -23,7 +22,7 @@ const PopUp = ({ popUpVisible, setPopUpVisible, changePopUp }) => {
           }}>
           <View style={styles.centeredView}>
             <View style={styles.modalView}>
-              <Text style={styles.modalText}>Hello World!</Text>
+              <Text style={styles.modalText}>Receipt Items</Text>
               <CheckBoxed numberOfItems={5}/>
               <Pressable
                 style={[styles.button, styles.buttonClose]}
