@@ -11,14 +11,16 @@ import stylesButtons from '../Common/Cards/Pantry/PantryCard.style'
 // are hooks(properties) that control the visibility of the CheckedBox.
 
 // NEED TO ADD handleUpdateQuantity and itemId as HOOKS LATER 
-const CheckBoxed = ({checkedVisible, setCheckedVisible}) => {
+const CheckBoxed = ({checkedVisible, setCheckedVisible, itemNum}) => {
   /**handleUpdateQuantity 
      * This function calls the handleUpdateQuantity function passed down from the parent
      * component, VirtualPantry, with the itemId and the amount to adjust the quantity by.
      * @param amount - The amount to adjust the quantity by. Can be positive or negative.
      */      
-  const updateQuantity = (amount) => {
-    handleUpdateQuantity(itemId, amount);
+  const [itemAmount, setItemAmount] = useState(itemNum);
+
+  const updateQuantity = (changeNum) => {
+    setItemAmount((itemAmount+changeNum >= 0) ? itemAmount + changeNum : itemAmount);
   };
 
   return (
@@ -29,7 +31,7 @@ const CheckBoxed = ({checkedVisible, setCheckedVisible}) => {
           onValueChange={setCheckedVisible}
           style={styles.checkbox}
         />
-        <Text style={styles.label}>Apple: 0{/*put item number*/}</Text>
+        <Text style={styles.label}>Apple: {itemAmount}</Text>
         
 
         <View style={stylesButtons.adjustButtons}>

@@ -3,9 +3,9 @@ import CheckBox from "../CheckBox/CheckBox";
 
 
 // This is where we can create number of checkBox objects depending on the number passed into Hook
-const Loop = ({numberOfItems}) => {
+const Loop = ({numberOfItems, itemNum}) => {
     
-    // initialize the state of each checkbox with useStae and Array.from
+    // initialize the state of each checkbox with useState and Array.from
     const [used, setUsed] = useState(Array.from({length: numberOfItems}, () => false));
     // HandleCheckBoxChange function to change the state when changed
     const handleCheckBoxChange = (index) => {
@@ -24,6 +24,7 @@ const Loop = ({numberOfItems}) => {
                         // arrow function is used so we don't get an undefined error when the 
                         // loops technically render
                         setCheckedVisible={() => handleCheckBoxChange(index)}
+                        itemNum={0}
                     />
                 ))
             }
