@@ -24,6 +24,13 @@ const ReceiptPage = ({ navigation }) => {
     const signupPage = () => {
         navigation.navigate('SignupScreen');
     };
+
+    const handleButtonClick = () => {
+        console.log("Button clicked!");
+        navigation.navigate('HomePage');
+        // You can perform any action you want here
+    };
+      
     return (
         <View style={styles.container}>
         
@@ -35,6 +42,7 @@ const ReceiptPage = ({ navigation }) => {
             <View style={styles.buttonContainer}>
                 <CustomButton onPress={loginPage} title="Login" color={COLORS.primary} borderColor = {COLORS.primary} buttonTextStyle={styles.buttonTextWhite} />
                 <CustomButton onPress={signupPage} title="Sign up" color={COLORS.white} borderColor = {COLORS.primary} buttonTextStyle={styles.buttonTextPink}/>
+                <Button onPress={handleButtonClick} title="Go to home" color="blue" />
             </View>
 
         </View>
