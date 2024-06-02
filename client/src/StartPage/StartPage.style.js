@@ -10,24 +10,28 @@ const styles = StyleSheet.create({
         // Change to 'center' to align items horizontally at the center
         alignItems: 'center', 
         // These cahnge the grey boarder around the page
-        marginTop: SIZES.medium,
-        marginBottom: SIZES.xLarge,
-        marginLeft: SIZES.medium,
-        marginRight: SIZES.medium,
+        paddingVertical: SIZES.medium,
+        paddingHorizontal: SIZES.medium,
         backgroundColor: COLORS.lightWhite,
     },
+    titleText: {
+        fontFamily: FONT.regular,
+        fontSize: SIZES.large * 2.3,
+        color: COLORS.primary,
+        marginBottom: SIZES.large,
+    },
     image: {
-        width: "90%",
-        height: "30%",
+        width: "40%",
+        height: "20%",
         resizeMode: 'contain',
-        marginTop: 80,
-        marginBottom: 80,
+        marginTop: SIZES.large * 4,
     },
     buttonContainer: {
-        marginTop: 140,
-        marginBottom: 120
+        marginTop: SIZES.large * 10,
+        marginBottom: SIZES.small * 10
     },
     button: {
+        fontFamily: FONT.regular,
         marginTop: SIZES.xSmall,
         marginBottom: SIZES.xSmall,
         borderRadius: 15, 
@@ -47,8 +51,7 @@ const styles = StyleSheet.create({
         color: COLORS.primary,
         fontSize: SIZES.medium,
         textTransform: 'none',
-    }
-    
+    },
 })
 
 export default styles;

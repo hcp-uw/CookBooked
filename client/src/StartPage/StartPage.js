@@ -27,10 +27,11 @@ const ReceiptPage = ({ navigation }) => {
     return (
         <View style={styles.container}>
         
-                <Image 
-                    source={require('../../assets/receipts/receipt1.jpeg')} 
-                    style={styles.image} 
-                />
+            <Image 
+                source={require('../../assets/icons/CookBooked-logo.png')} 
+                style={styles.image} 
+            />
+            <Text style={styles.titleText}>CookBooked</Text>
             <View style={styles.buttonContainer}>
                 <CustomButton onPress={loginPage} title="Login" color={COLORS.primary} borderColor = {COLORS.primary} buttonTextStyle={styles.buttonTextWhite} />
                 <CustomButton onPress={signupPage} title="Sign up" color={COLORS.white} borderColor = {COLORS.primary} buttonTextStyle={styles.buttonTextPink}/>
