@@ -15,9 +15,10 @@ const styles = StyleSheet.create({
         backgroundColor: COLORS.lightWhite,
     },
     titleText: {
-        fontFamily: FONT.regular,
+        //fontFamily: FONT.regular,
         fontSize: SIZES.large * 2.3,
         color: COLORS.primary,
+        fontWeight: 600,
         marginBottom: SIZES.large,
     },
     image: {
@@ -28,7 +29,7 @@ const styles = StyleSheet.create({
     },
     buttonContainer: {
         marginTop: SIZES.large * 10,
-        marginBottom: SIZES.small * 10
+        marginBottom: SIZES.small * 10,
     },
     button: {
         fontFamily: FONT.regular,
@@ -44,13 +45,15 @@ const styles = StyleSheet.create({
     },
     buttonTextWhite: {
         color: COLORS.white,
-        fontSize: SIZES.medium,
+        fontSize: SIZES.medium * 1.04,
         textTransform: 'none',
+        fontWeight: 600,
     },
     buttonTextPink: {
         color: COLORS.primary,
-        fontSize: SIZES.medium,
+        fontSize: SIZES.medium * 1.04,
         textTransform: 'none',
+        fontWeight: 600,
     },
 })
 
