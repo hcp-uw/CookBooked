@@ -14,6 +14,12 @@ const styles = StyleSheet.create({
         paddingHorizontal: SIZES.medium,
         backgroundColor: COLORS.lightWhite,
     },
+    sameLineContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        padding: 10,
+    },
     titleText: {
         //fontFamily: FONT.regular,
         fontSize: SIZES.large * 2.3,
@@ -37,6 +43,20 @@ const styles = StyleSheet.create({
         opacity: 0.8,
         marginBottom: SIZES.small,
         marginLeft: SIZES.small * 4.5,
+    },
+    accountText: {
+        fontSize: SIZES.xSmall * 1.2,
+        color: COLORS.gray,
+        fontWeight: 200,
+        opacity: 0.8,
+        padding: 5,
+    },
+    signUpText: {
+        fontSize: SIZES.xSmall * 1.2,
+        color: COLORS.primary,
+        fontWeight: 200,
+        opacity: 0.8,
+        padding: 5,
     },
     smallInput: {
         width: 150, 
