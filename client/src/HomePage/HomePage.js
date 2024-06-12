@@ -1,6 +1,13 @@
-import { React, useState, useEffect } from 'react';
+import * as React from 'react';
 import { Button, StyleSheet, Text, View } from "react-native";
 import { auth } from '../../firebase'
+import styles from './HomePage.style'
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import Ionicons from 'react-native-vector-icons/Ionicons'
+import {useState, useEffect} from 'react';
+
+const Tab = createBottomTabNavigator();
 
 const HomePage = ({ navigation }) => {
   const [user, setUser] = useState(null);
@@ -38,7 +45,7 @@ const HomePage = ({ navigation }) => {
   };
 
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+    <View style={styles.container}>
       <Text>CookBooked</Text>
       {user ? (
         <View>
@@ -53,14 +60,35 @@ const HomePage = ({ navigation }) => {
           <Button onPress={signupPage} title="Signup!" color="#F2555A" />
         </View>
       )}
+      {(
+      <NavigationContainer>
+        <Tab.Navigator
+          initialRouteName={'HomePage'}
+          screenOptions={({ route }) => ({
+            tabBarIcon: ({ focused, color, size }) => {
+              let iconName;
+              let rn = route.name;
+
+              if (rn === 'homePage') {
+                iconName = focused ? 'home' : 'home-outline'
+              }
+
+              return <Ionicons name={iconName} size={size} color={color}/>;
+            },
+          })}
+          tabBarOptions={{
+            activeTintColor: 'tomato',
+            inactiveTintColor: 'grey',
+            labelStyle: {paddingBottom: 10, fontSize: 10 },
+            style: {padding: 10, height: 70}
+          }}
+          >
+          <Tab.Screen name='LoginPage' component={loginPage}/>
+        </Tab.Navigator>
+      </NavigationContainer> 
+    )}
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  text: {
-    color: 'black',
-  }
-});
 
 export default HomePage;
