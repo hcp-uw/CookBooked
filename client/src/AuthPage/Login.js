@@ -70,8 +70,8 @@ const LoginScreen = () => {
         <CustomButton onPress={handleLogin} title="Login" color={COLORS.primary} borderColor = {COLORS.primary} buttonTextStyle={styles.buttonTextWhite} />
       </View>
       <View style={styles.sameLineContainer}>
-      <Text style={styles.accountText}>Don't Have Account?</Text> 
-      <Text style={styles.signUpText}>Sign Up</Text>
+        <Text style={styles.accountText}>Don't Have Account?</Text> 
+        <Text style={styles.signUpText}>Sign Up</Text>
       </View>
     </View>
   );
