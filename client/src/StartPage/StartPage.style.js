@@ -1,6 +1,8 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, Dimensions } from "react-native";
 
 import { COLORS, FONT, SIZES } from "../constants";
+
+const { width, height } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
     container: {
@@ -15,10 +17,10 @@ const styles = StyleSheet.create({
         backgroundColor: COLORS.lightWhite,
     },
     titleText: {
-        //fontFamily: FONT.regular,
-        fontSize: SIZES.large * 2.3,
+        // choosing the smaller to be able to do portrait or landscape mode
+        fontSize: Math.min(width, height) * 0.08,
         color: COLORS.primary,
-        fontWeight: 600,
+        fontWeight: '600',
         marginBottom: SIZES.large,
     },
     image: {
@@ -28,7 +30,7 @@ const styles = StyleSheet.create({
         marginTop: SIZES.large * 4,
     },
     buttonContainer: {
-        marginTop: SIZES.large * 10,
+        marginTop: height * 0.21,
         marginBottom: SIZES.small * 10,
     },
     button: {
@@ -36,8 +38,8 @@ const styles = StyleSheet.create({
         marginTop: SIZES.xSmall,
         marginBottom: SIZES.xSmall,
         borderRadius: 15, 
-        width: 350,
-        height: 40,
+        width: width * 0.4,
+        height: height * 0.06,
         paddingVertical: 12,
         alignItems: 'center',
         justifyContent: 'center',
@@ -47,13 +49,13 @@ const styles = StyleSheet.create({
         color: COLORS.white,
         fontSize: SIZES.medium * 1.04,
         textTransform: 'none',
-        fontWeight: 600,
+        fontWeight: '600',
     },
     buttonTextPink: {
         color: COLORS.primary,
         fontSize: SIZES.medium * 1.04,
         textTransform: 'none',
-        fontWeight: 600,
+        fontWeight: '600',
     },
 })
 
