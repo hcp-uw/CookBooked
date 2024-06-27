@@ -10,18 +10,23 @@ const Tab = createBottomTabNavigator();
 
 export default function MyComponent() {
   return (
+    // be able to hold and manage multiple tab screens
     <Tab.Navigator
+      // to get rid of the top screen saying what page it is
       screenOptions={{
         headerShown: false,
       }}
+
       tabBar={({ navigation, state, descriptors, insets }) => (
         <BottomNavigation.Bar
           navigationState={state}
-         safeAreaInsets={insets}
+          // says where the tabs should be
+          safeAreaInsets={insets}
           onTabPress={({ route, preventDefault }) => {
             const event = navigation.emit({
               type: 'tabPress',
               target: route.key,
+              // when it is true it prevents the default action and lets us go to our page we want
               canPreventDefault: true,
             });
 
@@ -29,6 +34,7 @@ export default function MyComponent() {
               preventDefault();
             } else {
              navigation.dispatch({
+                // navigate to specified screen
                 ...CommonActions.navigate(route.name, route.params),
                 target: state.key,
               });
