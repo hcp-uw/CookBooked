@@ -1,6 +1,8 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, Dimensions } from "react-native";
 
 import { COLORS, FONT, SIZES } from "../constants";
+
+const { width, height } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
     container: {
@@ -22,7 +24,7 @@ const styles = StyleSheet.create({
     },
     titleText: {
         //fontFamily: FONT.regular,
-        fontSize: SIZES.large * 2.3,
+        fontSize: Math.min(width, height) * 0.05,
         color: COLORS.black,
         fontWeight: 600,
         marginBottom: SIZES.large,
@@ -30,14 +32,14 @@ const styles = StyleSheet.create({
     },
     subText: {
         //fontFamily: FONT.regular,
-        fontSize: SIZES.small * 1.5,
+        fontSize: Math.min(width, height) * 0.02,
         color: COLORS.black,
         fontWeight: 400,
         marginBottom: SIZES.small,
     },
     forgotPasswordText: {
         //fontFamily: FONT.regular,
-        fontSize: SIZES.xSmall * 1.2,
+        fontSize: Math.min(width, height) * 0.013,
         color: COLORS.gray,
         fontWeight: 200,
         opacity: 0.8,
@@ -45,22 +47,22 @@ const styles = StyleSheet.create({
         marginLeft: SIZES.small * 4.5,
     },
     accountText: {
-        fontSize: SIZES.xSmall * 1.2,
+        fontSize: Math.min(width, height) * 0.013,
         color: COLORS.gray,
         fontWeight: 200,
         opacity: 0.8,
         padding: 5,
     },
     signUpText: {
-        fontSize: SIZES.xSmall * 1.2,
+        fontSize: Math.min(width, height) * 0.013,
         color: COLORS.primary,
         fontWeight: 200,
         opacity: 0.8,
         padding: 5,
     },
     smallInput: {
-        width: 150, 
-        height: 30,
+        width: width * 0.2, 
+        height: height * 0.03,
         padding: 5,
         borderWidth: 1,
         borderColor: 'black',
@@ -89,8 +91,8 @@ const styles = StyleSheet.create({
         marginTop: SIZES.xSmall,
         marginBottom: SIZES.xSmall,
         borderRadius: 15, 
-        width: 350,
-        height: 40,
+        width: width * 0.3,
+        height: height * 0.04,
         paddingVertical: 12,
         alignItems: 'center',
         justifyContent: 'center',
