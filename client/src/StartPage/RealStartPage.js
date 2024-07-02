@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
-
+import { COLORS } from '../constants' 
 import { CommonActions } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Text, BottomNavigation } from 'react-native-paper';
@@ -13,12 +13,16 @@ export default function MyComponent() {
     // be able to hold and manage multiple tab screens
     <Tab.Navigator
       // to get rid of the top screen saying what page it is
+      // need this for the individual tabs even you have it in the app
       screenOptions={{
         headerShown: false,
       }}
+      initialRouteName='Home'
 
       tabBar={({ navigation, state, descriptors, insets }) => (
-        <BottomNavigation.Bar
+        <View>
+          <View style={styles.line}/> 
+          <BottomNavigation.Bar
           navigationState={state}
           // says where the tabs should be
           safeAreaInsets={insets}
@@ -40,6 +44,7 @@ export default function MyComponent() {
               });
             }
           }}
+          // how to show the actual icon
           renderIcon={({ route, focused, color }) => {
             const { options } = descriptors[route.key];
             if (options.tabBarIcon) {
@@ -60,8 +65,29 @@ export default function MyComponent() {
             return label;
           }}
         />
+        </View> 
       )}
     >
+      <Tab.Screen
+        name="Pantry"
+        component={PantryScreen}
+        options={{
+          tabBarLabel: 'Pantry',
+          tabBarIcon: ({ color, size }) => {
+            return <Icon name="fridge" size={size} color={color} />;
+          },
+        }}
+      />
+      <Tab.Screen
+        name="Search"
+        component={SearchScreen}
+        options={{
+          tabBarLabel: 'Search',
+          tabBarIcon: ({ color, size }) => {
+            return <Icon name="feature-search" size={size} color={color} />;
+          },
+        }}
+      />
       <Tab.Screen
         name="Home"
         component={HomeScreen}
@@ -69,6 +95,16 @@ export default function MyComponent() {
           tabBarLabel: 'Home',
           tabBarIcon: ({ color, size }) => {
             return <Icon name="home" size={size} color={color} />;
+          },
+        }}
+      />
+      <Tab.Screen
+        name="Receipts"
+        component={RecieptScreen}
+        options={{
+          tabBarLabel: 'Receipts',
+          tabBarIcon: ({ color, size }) => {
+            return <Icon name="receipt" size={size} color={color} />;
           },
         }}
       />
@@ -102,7 +138,35 @@ function SettingsScreen() {
   );
 }
 
+function PantryScreen() {
+  return (
+    <View style={styles.container}>
+      <Text variant="headlineMedium">Pantry!</Text>
+    </View>
+  );
+}
+
+function RecieptScreen() {
+  return (
+    <View style={styles.container}>
+      <Text variant="headlineMedium">Reciepts!</Text>
+    </View>
+  );
+}
+
+function SearchScreen() {
+  return (
+    <View style={styles.container}>
+      <Text variant="headlineMedium">Search!</Text>
+    </View>
+  );
+}
+
 const styles = StyleSheet.create({
+  line: {
+    height: 4,
+    backgroundColor: COLORS.primary, 
+  },
   container: {
     flex: 1,
     justifyContent: 'center',
