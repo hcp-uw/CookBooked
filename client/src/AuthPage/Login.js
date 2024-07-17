@@ -4,6 +4,8 @@ import { auth } from '../../firebase';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import styles from './Login.style'
 import { COLORS } from '../constants' 
+import logo from '../../assets/logo/LogoWhite.png'
+
 
 const CustomButton = ({onPress, title, color, buttonTextStyle, borderColor}) => {
   return (
@@ -37,7 +39,7 @@ const LoginScreen = () => {
   return (
     <View style={styles.container}>
       <Image 
-        source={require('../../assets/icons/CookBooked-logo.png')} 
+        source={logo} 
         style={styles.image} 
       />
       <Text style={styles.titleText}>Welcome back!</Text>

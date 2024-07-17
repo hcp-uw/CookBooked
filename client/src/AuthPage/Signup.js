@@ -4,6 +4,8 @@ import { auth } from '../../firebase';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import styles from './Signup.style'
 import { COLORS } from '../constants' 
+import logo from '../../assets/logo/LogoWhite.png'
+
 
 const CustomButton = ({onPress, title, color, buttonTextStyle, borderColor}) => {
   return (
@@ -43,7 +45,7 @@ const SignupScreen = () => {
     <View style={styles.container}>
       <View style={styles.imageContainer}>
         <Image 
-          source={require('../../assets/icons/CookBooked-logo.png')} 
+          source={logo} 
           style={styles.image} 
         />
       </View>

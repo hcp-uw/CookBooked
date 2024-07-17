@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import { Text, StyleSheet, Button, View, Image, Modal, Pressable, TouchableOpacity } from "react-native"
 import { COLORS } from '../constants' 
 import styles from './StartPage.style'
+import logo from '../../assets/logo/LogoWhite.png'
 
 const CustomButton = ({onPress, title, color, buttonTextStyle, borderColor}) => {
     return (
@@ -35,7 +36,7 @@ const ReceiptPage = ({ navigation }) => {
         <View style={styles.container}>
         
             <Image 
-                source={require('../../assets/icons/CookBooked-logo.png')} 
+                source={logo} 
                 style={styles.image} 
             />
             <Text style={styles.titleText}>CookBooked</Text>
