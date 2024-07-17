@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styles from './HomePage.style';
-import { Text, StyleSheet, Button, View, Image, Modal, Pressable } from "react-native"; 
+import { Text, StyleSheet, Button, View, Image, Modal, Pressable, FlatList } from "react-native"; 
 import { TextInput } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/Ionicons'; 
 import { COLORS } from '../constants';
@@ -11,6 +11,22 @@ import MainPageCard from '../Common/Cards/mainPage/mainPageCard';
 
 
 const HomePage = ({ navigation }) => {
+  const foodPrints = [
+    { id: '1', title: 'Salad'},
+    { id: '2', title: 'Chicken'},
+    { id: '3', title: 'Beef'},
+    { id: '4', title: 'Beef'},
+    { id: '5', title: 'Beef'},
+    { id: '6', title: 'Beef'},
+    { id: '7', title: 'Beef'},
+  ]
+
+  const renderItem = ({ item }) => (
+    <MainPageCard
+      itemName={item.title}
+    >
+    </MainPageCard>
+  )
   return (
     <View style={styles.container}>
       <Image
@@ -29,9 +45,17 @@ const HomePage = ({ navigation }) => {
       </View>
       <View style={styles.textContainer}>
         <Text style={styles.textStyle}>Your foodprints</Text>
-        <MainPageCard
-          // image={'../../../../client/assets/foodImg/CBTofuSalad.png'}
-          itemName={"Salad"}
+        <FlatList
+          // each card we want to create
+          data={foodPrints}
+          // creates the actual card for each iteration
+          renderItem={renderItem}
+          // each unique key
+          keyExtractor={item => item.id}
+          // make the list scroll horizontally 
+          horizontal={true}
+          // controls if the horizontal scroll indicator is shown
+          showsHorizontalScrollIndicator={false}
         />
       </View>
     </View>
