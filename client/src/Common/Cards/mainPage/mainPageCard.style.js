@@ -6,6 +6,9 @@ const styles = StyleSheet.create({
   shadowContainer: {
     ...SHADOWS.medium,
     borderRadius: SIZES.small,
+    width: 140,
+    marginHorizontal: 10,
+    marginTop: 5,
     // marginBottom: 10,
   },
   container: {
@@ -20,8 +23,9 @@ const styles = StyleSheet.create({
     // ...SHADOWS.small,
     // shadowColor: COLORS.black,
     height: 140,
+    width: 120,
     marginBottom: 10,
-    position: 'relative'
+    position: 'relative', 
   },
   textContainer: {
     flex: 1,
