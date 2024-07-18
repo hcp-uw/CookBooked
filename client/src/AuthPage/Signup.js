@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { View, TextInput, Button, Text, Image, TouchableOpacity } from 'react-native';
-import { auth } from '../../firebase';
+import { auth, db } from '../../../firebase.js';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { ref, set } from 'firebase/database';
 import styles from './Signup.style'
 import { COLORS } from '../constants' 
 import logo from '../../assets/logo/LogoWhite.png'
-
 
 const CustomButton = ({onPress, title, color, buttonTextStyle, borderColor}) => {
   return (
@@ -34,11 +34,17 @@ const SignupScreen = () => {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
       console.log('User signed up:', user);
-      navigation.navigate('Home');
+      await set(ref(db, 'users/' + user.uid), {
+        username: user.email,
+        email: user.email,
+        pantry: {}
+      });
+  
+      navigation.navigate('Home'); // should navigate to "sign in home page, not the login/signup pages"
     } catch (error) {
       const errorMessage = error.message;
       setError(errorMessage);
-    }
+    } 
   };
 
   return (

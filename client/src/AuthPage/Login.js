@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { View, TextInput, Text, Image, TouchableOpacity } from 'react-native';
-import { auth } from '../../firebase';
+import { useNavigation } from '@react-navigation/native';
+import { auth } from '../../../firebase.js';
 import { signInWithEmailAndPassword } from 'firebase/auth';
+import { useUser } from '../../UserContext.js';
 import styles from './Login.style'
 import { COLORS } from '../constants' 
 import logo from '../../assets/logo/LogoWhite.png'
@@ -20,20 +22,16 @@ const CustomButton = ({onPress, title, color, buttonTextStyle, borderColor}) => 
 
 
 const LoginScreen = () => {
+  const { login, error } = useUser();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState(null);
+
+  const navigation = useNavigation();
+
 
   const handleLogin = async () => {
-    try {
-      const userCredential = await signInWithEmailAndPassword(auth, email, password);
-      const user = userCredential.user;
-      navigation.navigate('Home');
-      console.log('User logged in:', user);
-    } catch (error) {
-      const errorMessage = error.message;
-      setError(errorMessage);
-    }
+    await login(email, password);
+    navigation.navigate('HomePage');
   };
 
   return (

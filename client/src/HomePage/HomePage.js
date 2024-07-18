@@ -1,5 +1,6 @@
 import * as React from 'react';
 import styles from './HomePage.style';
+import { useUser } from '../../UserContext';
 import { Text, StyleSheet, Button, View, Image, Modal, Pressable, FlatList } from "react-native"; 
 import { TextInput } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/Ionicons'; 
@@ -11,6 +12,8 @@ import MainPageCard from '../Common/Cards/mainPage/mainPageCard';
 
 
 const HomePage = ({ navigation }) => {
+  const { user, logout } = useUser();
+  
   const foodPrints = [
     { id: '1', title: 'Salad'},
     { id: '2', title: 'Chicken'},
@@ -20,6 +23,11 @@ const HomePage = ({ navigation }) => {
     { id: '6', title: 'Beef'},
     { id: '7', title: 'Beef'},
   ]
+
+  async function userLogout() {
+    await logout();
+    navigation.navigate('StartPage');
+  }
 
   const renderItem = ({ item }) => (
     <MainPageCard
@@ -44,6 +52,7 @@ const HomePage = ({ navigation }) => {
         />
       </View>
       <View style={styles.textContainer}>
+        <Text style={styles.textStyle}>Welcome, {user ? user.email : 'Guest'}</Text>
         <Text style={styles.textStyle}>Your foodprints</Text>
         <FlatList
           // each card we want to create
@@ -57,6 +66,9 @@ const HomePage = ({ navigation }) => {
           // controls if the horizontal scroll indicator is shown
           showsHorizontalScrollIndicator={false}
         />
+      </View>
+      <View style={styles.buttonContainer}>
+        <Button title="Logout" onPress={userLogout} color="#F2555A" />
       </View>
     </View>
   )

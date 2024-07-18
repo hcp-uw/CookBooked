@@ -8,7 +8,7 @@ import { View, Text, TouchableOpacity, Image } from 'react-native'
 // Import specific styles for the ReceiptCard component
 import styles from './mainPageCard.style'
 import { getDatabase, ref, push, update } from "firebase/database";
-import firebase from "../../../../firebase";
+import firebase from "../../../../../firebase";
 import { images } from '../../../constants';
 
 // later add hooks for how many minutes and how many ingredients it takes to create it

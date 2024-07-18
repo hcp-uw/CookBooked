@@ -11,22 +11,25 @@ import RealStartPage from './src/StartPage/RealStartPage';
 import rushiVirtualPantryPage from './src/VirtualPantry/rushiVirtualPantry';
 import LoginScreen from './src/AuthPage/Login'
 import SignupScreen from './src/AuthPage/Signup';
+import { UserProvider } from './UserContext';
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <Stack.Navigator screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="StartPage" component={StartPage} />
-        <Stack.Screen name="HomePage" component={HomePage} />
-        <Stack.Screen name="RealStartPage" component={RealStartPage} />
-        <Stack.Screen name="ReceiptPage" component={ReceiptPage} />
-        <Stack.Screen name="VirtualPantry" component={VirtualPage} />
-        <Stack.Screen name="rushiVirtualPantry" component={rushiVirtualPantryPage} />
-        <Stack.Screen name="LoginScreen" component={LoginScreen} />
-        <Stack.Screen name="SignupScreen" component={SignupScreen} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <UserProvider>
+      <NavigationContainer>
+        <Stack.Navigator screenOptions={{ headerShown: false }}>
+          <Stack.Screen name="StartPage" component={StartPage} />
+          <Stack.Screen name="HomePage" component={HomePage} />
+          <Stack.Screen name="RealStartPage" component={RealStartPage} />
+          <Stack.Screen name="ReceiptPage" component={ReceiptPage} />
+          <Stack.Screen name="VirtualPantry" component={VirtualPage} />
+          <Stack.Screen name="rushiVirtualPantry" component={rushiVirtualPantryPage} />
+          <Stack.Screen name="LoginScreen" component={LoginScreen} />
+          <Stack.Screen name="SignupScreen" component={SignupScreen} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </UserProvider>
   );
 }

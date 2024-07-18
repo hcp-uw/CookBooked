@@ -8,7 +8,7 @@ import { Text, StyleSheet, Button, View, ScrollView, Image} from "react-native";
 import styles from './VirtualPantry.style';
 import PantryCard from '../Common/Cards/Pantry/PantryCard';
 import { getDatabase, ref, push, onValue, update } from "firebase/database";
-import firebase from "../../firebase";
+import firebase from "../../../firebase";
 import { DIVIDER, images } from '../constants';
 
 const VirtualPantry = ({ navigation }) => {

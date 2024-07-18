@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Text, StyleSheet, Button, View, TextInput, ScrollView } from "react-native"; 
 import { getDatabase, ref, push, child, get, update } from "firebase/database";
-import firebaseApp from "../../firebase";
+import firebaseApp from "../../../firebase";
 // import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 const VirtualPantry = ({ navigation }) => {
