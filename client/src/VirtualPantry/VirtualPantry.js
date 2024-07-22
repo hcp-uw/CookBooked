@@ -212,77 +212,79 @@ const VirtualPantry = ({ navigation }) => {
   };
 
   return (
-    <View>
-      {/* // Header of Page  */}
-      <View style={styles.header}>
-        <Text style={styles.headerTitle}>Your Pantry</Text>
-        <Image
-          source={images.avatar}
-          resizeMode="contain"
-          style={styles.userProfileImage}
-        />
-        {/* <Button
-          onPress={() => handleRefresh("pantry")}
-          title="Get Pantry Items"
-          color="#841584"
-          accessibilityLabel="Button to refresh pantry"
-        />
-        <Button
-          onPress={() => handleRefresh("get_receipt")}
-          title="Get Receipt Items"
-          color="#841584"
-          accessibilityLabel="Button to get receipt items"
-        />
-        <Button
-          onPress={() => handleRefresh("post_receipt")}
-          title="Add Receipt Items to Pantry"
-          color="#841584"
-          accessibilityLabel="Button to get add items from receipt to pantry"
-        />
-        <Button
-          onPress={() => handleRefresh("add_to_pantry")}
-          title="Add Items to Pantry"
-          color="#841584"
-          accessibilityLabel="Button to get add items to pantry"
-        />
-        <Button
-          onPress={() => handleRefresh("remove_from_pantry")}
-          title="Remove Items from Pantry"
-          color="#841584"
-          accessibilityLabel="Button to remove items from pantry"
-        /> */}
+    <ScrollView>
+      <View>
+        {/* // Header of Page  */}
+        <View style={styles.header}>
+          <Text style={styles.headerTitle}>Your Pantry</Text>
+          <Image
+            source={images.avatar}
+            resizeMode="contain"
+            style={styles.userProfileImage}
+          />
+          {/* <Button
+            onPress={() => handleRefresh("pantry")}
+            title="Get Pantry Items"
+            color="#841584"
+            accessibilityLabel="Button to refresh pantry"
+          />
+          <Button
+            onPress={() => handleRefresh("get_receipt")}
+            title="Get Receipt Items"
+            color="#841584"
+            accessibilityLabel="Button to get receipt items"
+          />
+          <Button
+            onPress={() => handleRefresh("post_receipt")}
+            title="Add Receipt Items to Pantry"
+            color="#841584"
+            accessibilityLabel="Button to get add items from receipt to pantry"
+          />
+          <Button
+            onPress={() => handleRefresh("add_to_pantry")}
+            title="Add Items to Pantry"
+            color="#841584"
+            accessibilityLabel="Button to get add items to pantry"
+          />
+          <Button
+            onPress={() => handleRefresh("remove_from_pantry")}
+            title="Remove Items from Pantry"
+            color="#841584"
+            accessibilityLabel="Button to remove items from pantry"
+          /> */}
+        </View>
+
+        {/* Divider line (would want to move styling to themes?) */}
+        <View style={DIVIDER.header}/>
+
+        {/* <View>
+          <Text>{pantryText}</Text>
+        </View> */}
+
+        {/* Pantry Cards Section */}
+        <ScrollView style={styles.container}>
+          {/* <PantryCard
+            itemId={"1"}
+            itemName={"Apple"}
+            lastAdded={"01 Jan, 2023"}
+            numItems={2}
+            // handleNavigate={() => router.push(``)}
+          /> */}
+
+          {items.map(item => (
+                  <PantryCard
+                      key={item.id}
+                      itemId={item.id}
+                      itemName={item.name}
+                      lastAdded={item.lastAdded}
+                      numItems={item.quantity} 
+                      handleUpdateQuantity={handleUpdateQuantity}
+                      // handleNavigate={() => handleNavigate(item.id)}
+                  />
+              ))}
+        </ScrollView>
       </View>
-
-      {/* Divider line (would want to move styling to themes?) */}
-      <View style={DIVIDER.header}/>
-
-      {/* <View>
-        <Text>{pantryText}</Text>
-      </View> */}
-
-      {/* Pantry Cards Section */}
-      <ScrollView style={styles.container}>
-        {/* <PantryCard
-          itemId={"1"}
-          itemName={"Apple"}
-          lastAdded={"01 Jan, 2023"}
-          numItems={2}
-          // handleNavigate={() => router.push(``)}
-        /> */}
-
-        {items.map(item => (
-                <PantryCard
-                    key={item.id}
-                    itemId={item.id}
-                    itemName={item.name}
-                    lastAdded={item.lastAdded}
-                    numItems={item.quantity} 
-                    handleUpdateQuantity={handleUpdateQuantity}
-                    // handleNavigate={() => handleNavigate(item.id)}
-                />
-            ))}
-      </ScrollView>
-    </View>
+    </ScrollView>
   )
 }
 

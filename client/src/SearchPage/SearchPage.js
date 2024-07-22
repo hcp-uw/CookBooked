@@ -5,13 +5,15 @@
 // Import core React functionality from the React package.
 import React, { useState } from 'react';
 // Import specific components and utilities from React Native for building the user interface.
-import { Text, StyleSheet, Button, View, Image, Modal, Pressable } from "react-native"; 
+import { Text, StyleSheet, Button, View, Image, Modal, Pressable, ScrollView } from "react-native"; 
 
 const SearchPage = ({ navigation }) => {
     return (
-        <View>
-            <Text>SeachPage</Text>
-        </View>
+        <ScrollView>
+            <View>
+                <Text>SeachPage</Text>
+            </View>
+        </ScrollView>
     )
 }
 

@@ -7,7 +7,7 @@
 // Import core React functionality from the React package.
 import React, { useState } from 'react';
 // Import specific components and utilities from React Native for building the user interface.
-import { Text, StyleSheet, Button, View, Image, Modal, Pressable } from "react-native"; 
+import { Text, StyleSheet, Button, View, Image, Modal, Pressable, ScrollView } from "react-native"; 
 // Import the ReceiptCard component where custom card components are stored.
 import ReceiptCard from '../Common/Cards/Receipt/ReceiptCard';
 // Import specific styles for the ReceiptPage component
@@ -38,6 +38,7 @@ const ReceiptPage = ({ navigation }) => {
     };
 
   return (
+    <ScrollView>
       <View>
         {/* // Header of Page  */}
         <View style={styles.header}>
@@ -78,9 +79,8 @@ const ReceiptPage = ({ navigation }) => {
           source={require('../../assets/Dubs_Story_Image.jpg')}
           style={styles.image}
         />
-
-        
       </View>
+    </ScrollView>
   )
 }
 
