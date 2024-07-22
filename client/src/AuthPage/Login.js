@@ -31,7 +31,7 @@ const LoginScreen = () => {
 
   const handleLogin = async () => {
     await login(email, password);
-    navigation.navigate('HomePage');
+    navigation.navigate('RealStartPage');
   };
 
   return (
