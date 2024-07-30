@@ -14,7 +14,7 @@ import SettingPage from '../SettingPage/SettingPage';
 
 const Tab = createBottomTabNavigator();
 
-export default function bottomTab() {
+export default function BottomTab() {
   return (
     // be able to hold and manage multiple tab screens
     <Tab.Navigator

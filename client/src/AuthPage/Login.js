@@ -32,7 +32,7 @@ const LoginScreen = () => {
   const handleLogin = async () => {
     const login_result = await login(email, password);
     if (login_result) {
-      navigation.navigate('HomePage');
+      navigation.navigate('RealStartPage');
     }
   };
 

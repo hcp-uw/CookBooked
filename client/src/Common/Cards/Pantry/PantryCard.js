@@ -15,7 +15,7 @@ import firebase from "../../../../../firebase";
 import { images } from '../../../constants';
 
 
-const PantryCard = ({ itemId, itemName, lastAdded, numItems, handleUpdateQuantity, handleNavigate }) => {
+const PantryCard = ({ itemName, lastAdded, numItems, handleUpdateQuantity, handleNavigate }) => {
     // console.log("Rendering ReceiptCard", storeName, date, numItems);
 
 
@@ -46,7 +46,7 @@ const PantryCard = ({ itemId, itemName, lastAdded, numItems, handleUpdateQuantit
                         </Text>
 
                         <Text style={styles.contentTitle}>
-                            Last Added: <Text style={styles.contentDetail}>01 Jan, 2023</Text>
+                            Last Added: <Text style={styles.contentDetail}>{lastAdded}</Text>
                         </Text>
                         
                         <Text style={styles.contentTitle}>
