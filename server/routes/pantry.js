@@ -15,10 +15,11 @@ router.post('/add', async (req, res) => {
     const itemRef = ref(db, `users/${uid}/pantry/${item}`);
     const snapshot = await get(itemRef);
     const updates = {}
-    updates[`${item}`] = quantity;
+    const timestamp = new Date().toISOString().substring(0, 10);
+    console.log(timestamp)
+    updates[`${item}`] = {quantity: quantity, last_added: timestamp};
     if (snapshot.exists()) {
-        console.log(snapshot.val());
-        updates[`${item}`] += snapshot.val();
+        updates[`${item}`].quantity += snapshot.val().quantity;
     }
 
     await update(pantryRef, updates);
@@ -61,23 +62,32 @@ router.post('/remove', async (req, res) => {
 
 // prints out whats in the pantry
 router.get('/', async (req, res) => {
-    try {
-        const jsonData = await fs.readFile(pantryJSON);
-        const data = JSON.parse(jsonData);
+    let uid = req.query.uid;
 
-        const username = Object.keys(data.users)[0];
-        const pantry = data.users[username].pantry;
-
-        const pantryContents = {
-            username: username,
-            pantry: pantry
-        };
-
-        res.json(pantryContents);
-    } catch (error) {
-        console.error('Error reading pantry data:', error);
-        res.status(500).json({ error: "Failed to read pantry data" });
+    const pantryRef = ref(db, `users/${uid}/pantry`);
+    const snapshot = await get(pantryRef);
+    if (snapshot.exists()) {
+        res.status(200).json({pantry : snapshot.val()});
+    } else {
+        res.status(404).json({pantry: {}});
     }
+    // try {
+    //     const jsonData = await fs.readFile(pantryJSON);
+    //     const data = JSON.parse(jsonData);
+
+    //     const username = Object.keys(data.users)[0];
+    //     const pantry = data.users[username].pantry;
+
+    //     const pantryContents = {
+    //         username: username,
+    //         pantry: pantry
+    //     };
+
+    //     res.json(pantryContents);
+    // } catch (error) {
+    //     console.error('Error reading pantry data:', error);
+    //     res.status(500).json({ error: "Failed to read pantry data" });
+    // }
 });
 
 

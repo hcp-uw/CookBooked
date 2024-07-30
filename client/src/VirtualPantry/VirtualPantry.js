@@ -16,6 +16,7 @@ const VirtualPantry = ({ navigation }) => {
   // State to store the fetched items
   const { user } = useUser();
   const [items, setItems] = useState([]);
+  // const [items, setItems] = useState({});
   const [pantryText, setPantryText] = useState('');
 
   console.log(user.uid);
@@ -23,6 +24,9 @@ const VirtualPantry = ({ navigation }) => {
   useEffect(() => {
     const db = getDatabase(firebase);
     const itemsRef = ref(db, 'foodItems');
+    let pantry = loadPantry(user.uid);
+
+    // setItems(pantry);
 
     // Subscribe to the itemsRef and listen continuously for data changes
     const unsubscribe = onValue(itemsRef, (snapshot) => {
@@ -98,7 +102,7 @@ const VirtualPantry = ({ navigation }) => {
     // }, []);
 
     const formatPantryText = (data) => {
-        if (!data) return 'No data available';
+        if (!data) return 'Your Pantry is Empty!';
         let pantryText = `${data.username}'s Pantry Contents:\n`;
         for (let [item, quantity] of Object.entries(data.pantry)) {
             pantryText += `${item}: ${quantity}\n`;
@@ -106,11 +110,11 @@ const VirtualPantry = ({ navigation }) => {
         return pantryText;
     };
 
-    async function loadPantry() {
+    async function loadPantry(uid) {
       try {
-          let response = await fetch('http://localhost:3000/pantry');
+          let response = await fetch(`http://localhost:3000/pantry?uid=${uid}`);
           let data = await response.json();
-          return data;
+          return data.pantry;
       } catch (error) {
           console.error('Error fetching data:', error);
           return null;
