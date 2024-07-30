@@ -30,8 +30,10 @@ const LoginScreen = () => {
 
 
   const handleLogin = async () => {
-    await login(email, password);
-    navigation.navigate('RealStartPage');
+    const login_result = await login(email, password);
+    if (login_result) {
+      navigation.navigate('HomePage');
+    }
   };
 
   return (

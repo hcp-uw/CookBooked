@@ -6,6 +6,7 @@
 import React, { useState, useEffect } from 'react';
 import { Text, StyleSheet, Button, View, ScrollView, Image} from "react-native"; 
 import styles from './VirtualPantry.style';
+import { useUser } from '../../UserContext';
 import PantryCard from '../Common/Cards/Pantry/PantryCard';
 import { getDatabase, ref, push, onValue, update } from "firebase/database";
 import firebase from "../../../firebase";
@@ -13,12 +14,19 @@ import { DIVIDER, images } from '../constants';
 
 const VirtualPantry = ({ navigation }) => {
   // State to store the fetched items
+  const { user } = useUser();
   const [items, setItems] = useState([]);
+  // const [items, setItems] = useState({});
   const [pantryText, setPantryText] = useState('');
+
+  console.log(user.uid);
 
   useEffect(() => {
     const db = getDatabase(firebase);
     const itemsRef = ref(db, 'foodItems');
+    let pantry = loadPantry(user.uid);
+
+    // setItems(pantry);
 
     // Subscribe to the itemsRef and listen continuously for data changes
     const unsubscribe = onValue(itemsRef, (snapshot) => {
@@ -94,7 +102,7 @@ const VirtualPantry = ({ navigation }) => {
     // }, []);
 
     const formatPantryText = (data) => {
-        if (!data) return 'No data available';
+        if (!data) return 'Your Pantry is Empty!';
         let pantryText = `${data.username}'s Pantry Contents:\n`;
         for (let [item, quantity] of Object.entries(data.pantry)) {
             pantryText += `${item}: ${quantity}\n`;
@@ -102,11 +110,11 @@ const VirtualPantry = ({ navigation }) => {
         return pantryText;
     };
 
-    async function loadPantry() {
+    async function loadPantry(uid) {
       try {
-          let response = await fetch('http://localhost:3000/pantry');
+          let response = await fetch(`http://localhost:3000/pantry?uid=${uid}`);
           let data = await response.json();
-          return data;
+          return data.pantry;
       } catch (error) {
           console.error('Error fetching data:', error);
           return null;
@@ -141,13 +149,14 @@ const VirtualPantry = ({ navigation }) => {
 
   async function addToPantry(item, amount) {
     try {
-      await fetch("http://localhost:3000/pantry/add", {
+      let response = await fetch("http://localhost:3000/pantry/add", {
           method: "POST",
           headers: {
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify({item: item, quantity: amount})
+          body: JSON.stringify({item: item, quantity: amount, uid: user.uid})
       });
+      if (response.status == 200) setPantryText(`Added ${amount} ${item}(s) to pantry`);
   } catch (error) {
       console.error('Error posting data:', error);
   }
@@ -222,6 +231,12 @@ const VirtualPantry = ({ navigation }) => {
             resizeMode="contain"
             style={styles.userProfileImage}
           />
+          <Button
+            onPress={() => addToPantry("Carrot", 5)}
+            title="Add Items to Pantry"
+            color="#841584"
+            accessibilityLabel="Button to get add items to pantry"
+          />
           {/* <Button
             onPress={() => handleRefresh("pantry")}
             title="Get Pantry Items"
@@ -240,12 +255,7 @@ const VirtualPantry = ({ navigation }) => {
             color="#841584"
             accessibilityLabel="Button to get add items from receipt to pantry"
           />
-          <Button
-            onPress={() => handleRefresh("add_to_pantry")}
-            title="Add Items to Pantry"
-            color="#841584"
-            accessibilityLabel="Button to get add items to pantry"
-          />
+          
           <Button
             onPress={() => handleRefresh("remove_from_pantry")}
             title="Remove Items from Pantry"
@@ -257,9 +267,9 @@ const VirtualPantry = ({ navigation }) => {
         {/* Divider line (would want to move styling to themes?) */}
         <View style={DIVIDER.header}/>
 
-        {/* <View>
+        <View>
           <Text>{pantryText}</Text>
-        </View> */}
+        </View>
 
         {/* Pantry Cards Section */}
         <ScrollView style={styles.container}>
