@@ -17,7 +17,7 @@ const CustomButton = ({onPress, title, color, buttonTextStyle, borderColor}) => 
     )
 }
 
-const ReceiptPage = ({ navigation }) => {
+const StartPage = ({ navigation }) => {
 
     const loginPage = () => {
         navigation.navigate('LoginScreen');
@@ -26,8 +26,8 @@ const ReceiptPage = ({ navigation }) => {
         navigation.navigate('SignupScreen');
     };
 
-    const handleButtonClick = () => {
-        navigation.navigate('HomePage');
+    const startPage = () => {
+        navigation.navigate('RealStartPage');
     };
       
     return (
@@ -41,11 +41,11 @@ const ReceiptPage = ({ navigation }) => {
             <View style={styles.buttonContainer}>
                 <CustomButton onPress={loginPage} title="Login" color={COLORS.primary} borderColor = {COLORS.primary} buttonTextStyle={styles.buttonTextWhite} />
                 <CustomButton onPress={signupPage} title="Sign up" color={COLORS.white} borderColor = {COLORS.primary} buttonTextStyle={styles.buttonTextPink}/>
-                <Button onPress={handleButtonClick} title="Go to home" color="blue" />
+                <Button onPress={startPage} title="Go to home" color="blue" />
             </View>
 
         </View>
     )
 }
 
-export default ReceiptPage;
+export default StartPage;

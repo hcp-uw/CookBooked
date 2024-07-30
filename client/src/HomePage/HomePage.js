@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styles from './HomePage.style';
 import { useUser } from '../../UserContext';
-import { Text, StyleSheet, Button, View, Image, Modal, Pressable, FlatList } from "react-native"; 
+import { Text, StyleSheet, ScrollView, Button, View, Image, Modal, Pressable, FlatList } from "react-native"; 
 import { TextInput } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/Ionicons'; 
 import { COLORS } from '../constants';
@@ -24,6 +24,16 @@ const HomePage = ({ navigation }) => {
     { id: '7', title: 'Beef'},
   ]
 
+  const fastMake = [
+    { id: '1', title: 'Bruschetta'},
+    { id: '2', title: 'BLT'},
+    { id: '3', title: 'rice and chicken'},
+    { id: '4', title: 'Beef'},
+    { id: '5', title: 'Beef'},
+    { id: '6', title: 'Beef'},
+    { id: '7', title: 'Beef'},
+  ]
+
   async function userLogout() {
     await logout();
     navigation.navigate('StartPage');
@@ -36,41 +46,59 @@ const HomePage = ({ navigation }) => {
     </MainPageCard>
   )
   return (
-    <View style={styles.container}>
-      <Image
-        source={require('../../../client/assets/foodImg/CBTofuSalad.png')}
-        style={styles.image}
-        resizeMode="cover"
-      />
-      <View style={styles.searchBarContainer}>
-        <Icon name="search" size={30} color={COLORS.gray} style={styles.iconSearch}/>
-        <TextInput
-          underlineColor='transparent'
-          placeholder='Search Recipes'
-          placeholderTextColor={COLORS.gray2}
-          style={styles.searchBar}
+    // if you want to implement styles for ScrollView use contentContainer Style
+    <ScrollView>
+      <View style={styles.container}>
+        <Image
+          source={require('../../../client/assets/foodImg/CBTofuSalad.png')}
+          style={styles.image}
+          resizeMode="cover"
         />
+        <View style={styles.searchBarContainer}>
+          <Icon name="search" size={30} color={COLORS.gray} style={styles.iconSearch}/>
+          <TextInput
+            underlineColor='transparent'
+            placeholder='Search Recipes'
+            placeholderTextColor={COLORS.gray2}
+            style={styles.searchBar}
+          />
+        </View>
+        <View style={styles.textContainer}>
+          {/* <Text style={styles.textStyle}>Welcome, {user ? user.email : 'Guest'}</Text> */}
+          <Text style={styles.textStyle}>Your foodprints</Text>
+          <FlatList
+            // each card we want to create
+            data={foodPrints}
+            // creates the actual card for each iteration
+            renderItem={renderItem}
+            // each unique key
+            keyExtractor={item => item.id}
+            // make the list scroll horizontally 
+            horizontal={true}
+            // controls if the horizontal scroll indicator is shown
+            showsHorizontalScrollIndicator={false}
+          />
+        </View>
+        <View style={styles.textContainer}>
+          <Text style={styles.textStyle}>Fastest to make</Text>
+          <FlatList
+            // each card we want to create
+            data={fastMake}
+            // creates the actual card for each iteration
+            renderItem={renderItem}
+            // each unique key
+            keyExtractor={item => item.id}
+            // make the list scroll horizontally 
+            horizontal={true}
+            // controls if the horizontal scroll indicator is shown
+            showsHorizontalScrollIndicator={false}
+          />
+        </View>
+        {/* <View style={styles.buttonContainer}>
+          <Button title="Logout" onPress={userLogout} color="#F2555A" />
+        </View> */}
       </View>
-      <View style={styles.textContainer}>
-        <Text style={styles.textStyle}>Welcome, {user ? user.email : 'Guest'}</Text>
-        <Text style={styles.textStyle}>Your foodprints</Text>
-        <FlatList
-          // each card we want to create
-          data={foodPrints}
-          // creates the actual card for each iteration
-          renderItem={renderItem}
-          // each unique key
-          keyExtractor={item => item.id}
-          // make the list scroll horizontally 
-          horizontal={true}
-          // controls if the horizontal scroll indicator is shown
-          showsHorizontalScrollIndicator={false}
-        />
-      </View>
-      <View style={styles.buttonContainer}>
-        <Button title="Logout" onPress={userLogout} color="#F2555A" />
-      </View>
-    </View>
+    </ScrollView>
   )
 }
 

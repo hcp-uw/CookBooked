@@ -21,8 +21,8 @@ export default function App() {
       <NavigationContainer>
         <Stack.Navigator screenOptions={{ headerShown: false }}>
           <Stack.Screen name="StartPage" component={StartPage} />
-          <Stack.Screen name="HomePage" component={HomePage} />
           <Stack.Screen name="RealStartPage" component={RealStartPage} />
+          <Stack.Screen name="HomePage" component={HomePage} />
           <Stack.Screen name="ReceiptPage" component={ReceiptPage} />
           <Stack.Screen name="VirtualPantry" component={VirtualPage} />
           <Stack.Screen name="rushiVirtualPantry" component={rushiVirtualPantryPage} />

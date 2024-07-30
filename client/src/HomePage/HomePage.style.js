@@ -44,6 +44,7 @@ const styles = StyleSheet.create({
     textContainer: {
         alignSelf: 'stretch',
         paddingHorizontal: 30,
+        paddingBottom: 20,
     },
     textStyle: {
         fontFamily: FONT.bold,
