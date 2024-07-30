@@ -2,7 +2,7 @@
 // This component renders an individual homePageCard, displaying receipes and such.
 
 // Import core React functionality from the React package.
-import React from 'react'
+import React from 'react';
 // Import specific components from React Native for building the user interface.
 import { View, Text, TouchableOpacity, Image } from 'react-native'
 // Import specific styles for the ReceiptCard component
@@ -12,7 +12,7 @@ import firebase from "../../../../../firebase";
 import { images } from '../../../constants';
 
 // later add hooks for how many minutes and how many ingredients it takes to create it
-const MainPageCard = ({ image, itemName}) => {
+const MainPageCard = ({itemName}) => {
     // console.log("Rendering ReceiptCard", storeName, date, numItems);
 
 
@@ -28,11 +28,12 @@ const MainPageCard = ({ image, itemName}) => {
     return (
         <View style={styles.shadowContainer}>
             <View style={styles.container}>
-                {/* <Image
-                    source={require(image)}
+                <Image
+                    source={require('./CBSalad.png')}
                     style={styles.image}
-                /> */}
-                <Text>{itemName}</Text>
+                    resizeMode='cover'
+                />
+                <Text style={styles.textStyle}>{itemName}</Text>
             </View>
         </View>
     )
