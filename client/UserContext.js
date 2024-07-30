@@ -20,8 +20,10 @@ export const UserProvider = ({ children }) => {
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       setUser(userCredential.user);
+      return true;
     } catch (error) {
       setError(error.message);
+      return false;
     }
   };
 
