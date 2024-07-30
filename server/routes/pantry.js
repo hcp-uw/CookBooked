@@ -1,25 +1,40 @@
 import express from 'express';
 import { promises as fs } from 'fs';
+import { ref, update, get } from 'firebase/database';
+import { db } from "../config/firebaseConfig.js";
 var router = express.Router();
 
 const pantryJSON = "data/pantry.json"
-
 // add specific items with quantities to json
 router.post('/add', async (req, res) => {
-    let item = req.body.item
+    let item = req.body.item.toLowerCase();
     let quantity = parseInt(req.body.quantity);
+    let uid = req.body.uid;
 
-    const jsonData = await fs.readFile(pantryJSON);
-    const user = JSON.parse(jsonData);
-
-    if (user.users.user1.pantry[item]) {
-        user.users.user1.pantry[item] += quantity;
-    } else {
-        user.users.user1.pantry[item] = quantity;
+    const pantryRef = ref(db, `users/${uid}/pantry`);
+    const itemRef = ref(db, `users/${uid}/pantry/${item}`);
+    const snapshot = await get(itemRef);
+    const updates = {}
+    updates[`${item}`] = quantity;
+    if (snapshot.exists()) {
+        console.log(snapshot.val());
+        updates[`${item}`] += snapshot.val();
     }
 
-    await fs.writeFile(pantryJSON, JSON.stringify(user, null, 2));
-    res.json({status: "success"});
+    await update(pantryRef, updates);
+    res.status(200).send('Pantry updated successfully.');
+
+    // const jsonData = await fs.readFile(pantryJSON);
+    // const user = JSON.parse(jsonData);
+
+    // if (user.users.user1.pantry[item]) {
+    //     user.users.user1.pantry[item] += quantity;
+    // } else {
+    //     user.users.user1.pantry[item] = quantity;
+    // }
+
+    // await fs.writeFile(pantryJSON, JSON.stringify(user, null, 2));
+    // res.json({status: "success"});
 });
 
 // remove specific items with quantities from json
