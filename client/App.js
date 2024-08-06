@@ -11,6 +11,7 @@ import RealStartPage from './src/StartPage/RealStartPage';
 import rushiVirtualPantryPage from './src/VirtualPantry/rushiVirtualPantry';
 import LoginScreen from './src/AuthPage/Login'
 import SignupScreen from './src/AuthPage/Signup';
+import ProfilePage from './src/ProfilePage/Profile'
 import { UserProvider } from './UserContext';
 
 const Stack = createNativeStackNavigator();
@@ -28,6 +29,7 @@ export default function App() {
           <Stack.Screen name="rushiVirtualPantry" component={rushiVirtualPantryPage} />
           <Stack.Screen name="LoginScreen" component={LoginScreen} />
           <Stack.Screen name="SignupScreen" component={SignupScreen} />
+          <Stack.Screen name="ProfilePage" component={ProfilePage} />
         </Stack.Navigator>
       </NavigationContainer>
     </UserProvider>

@@ -4,7 +4,7 @@
 // and functionality to update the quantity of each item. 
 
 import React, { useState, useEffect } from 'react';
-import { Text, StyleSheet, Button, View, ScrollView, Image} from "react-native"; 
+import { Text, StyleSheet, Button, View, ScrollView, Image, TouchableOpacity } from "react-native"; 
 import styles from './VirtualPantry.style';
 import { useUser } from '../../UserContext';
 import PantryCard from '../Common/Cards/Pantry/PantryCard';
@@ -141,6 +141,14 @@ const VirtualPantry = ({ navigation }) => {
   //   }
   // }
 
+  function handleImagePress() {
+    if (loggedIn) {
+      navigation.navigate("ProfilePage")
+    } else {
+      navigation.navigate("StartPage")
+    }
+  }
+
   const items = pantryItems
         ? Object.keys(pantryItems).map(key => ({
             name: key,
@@ -154,17 +162,23 @@ const VirtualPantry = ({ navigation }) => {
       {/* // Header of Page  */}
       <View style={styles.header}>
         <Text style={styles.headerTitle}>Your Pantry</Text>
-        <Image
-          source={images.avatar}
-          resizeMode="contain"
-          style={styles.userProfileImage}
-        />
-        <Button
-          onPress={() => addToPantry("CarroT", 5)}
-          title="Add Items to Pantry"
-          color="#841584"
-          accessibilityLabel="Button to get add items to pantry"
-        />
+        { loggedIn ? (
+          <View style={styles.imgContainer}>
+            <TouchableOpacity onPress={handleImagePress}>
+              <Image
+                source={images.avatar}
+                resizeMode="contain"
+                style={styles.userProfileImage}
+              />
+            </TouchableOpacity>
+        </View>
+        ) : (
+          <View>
+            <TouchableOpacity onPress={handleImagePress} style={styles.button}>
+              <Text style={styles.login}>Login/Signup</Text>
+            </TouchableOpacity>
+          </View>
+        )}
       </View>
 
       {/* Divider line (would want to move styling to themes?) */}
@@ -187,6 +201,12 @@ const VirtualPantry = ({ navigation }) => {
                       // handleNavigate={() => handleNavigate(item.id)}
                   />
               ))}
+          <Button
+            onPress={() => addToPantry("CarroT", 5)}
+            title="Add Items to Pantry"
+            color="#841584"
+            accessibilityLabel="Button to get add items to pantry"
+          />
         </ScrollView> 
       ) : (
         <View>

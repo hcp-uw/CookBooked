@@ -16,6 +16,7 @@ import chevronRight from '../../assets/icons/chevron-right.png';
 import home from '../../assets/icons/CBHomeButton.png';
 import add from '../../assets/icons/CBAddButton.png';
 import pantry from '../../assets/icons/CBPantryButton.png';
+import edit from '../../assets/icons/edit.png'
 
 export default {
   heart,
@@ -30,5 +31,6 @@ export default {
   chevronRight,
   home,
   add,
-  pantry
+  pantry,
+  edit
 };

@@ -22,20 +22,27 @@ const styles = StyleSheet.create({
     paddingLeft: SIZES.large,
     fontWeight: '700'       // also add to theme.js to make it as a constant in the future
   },
-  headerBtn: {
-    fontSize: SIZES.medium,
-    fontFamily: FONT.medium,
-    color: COLORS.gray,
-  },
   cardsContainer: {
     marginTop: SIZES.medium,
     gap: SIZES.small,
   },
   userProfileImage: {
-    height: '100%',
-    alignContent: 'center',
-    justifyContent: 'center',
-    paddingRight: 70
+    width: 30,
+    height: 30,
+  },
+  imgContainer: {
+    marginRight: 15,
+  },
+  button: {
+    backgroundColor: '#841584',
+    padding: 10,
+    marginRight: 15,
+    borderRadius: 5,
+    alignItems: 'center'
+  },
+  login: {
+    fontSize: 10,
+    color: 'white',
   }
 });
 
