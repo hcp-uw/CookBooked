@@ -13,7 +13,7 @@ import styles from './SearchPage.style';
 const SearchPage = ({ navigation }) => {
     return (
         <ScrollView>
-            <View>
+            <View style={styles.container}>
                 <View style={styles.header}>
                     <Text style={styles.headerTitle}>Search</Text>
                     <Image
@@ -33,6 +33,7 @@ const SearchPage = ({ navigation }) => {
                         style={styles.searchBar}
                     />
                 </View>
+                <Text style={styles.textStyle}>Your foodprints</Text>
             </View>
         </ScrollView>
     )

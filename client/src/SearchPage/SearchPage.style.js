@@ -9,6 +9,16 @@ const styles = StyleSheet.create({
         marginLeft: SIZES.medium,
         marginRight: SIZES.medium,
     },
+    textStyle: {
+        fontFamily: FONT.bold,
+        fontSize: 24,
+        paddingTop: '2%',
+        paddingLeft: '2%',
+    },
+    textContainer: {
+        flexDirection: 'row',
+        flex: 1,
+    },
     header: {
         flexDirection: "row",
         justifyContent: "space-between",
@@ -17,6 +27,7 @@ const styles = StyleSheet.create({
     },
     searchBarContainer: {
         width: '100%',
+        height: 60,
         borderColor: '#fff',
         marginTop: SIZES.xSmall,
         flexDirection: 'row',
@@ -25,11 +36,11 @@ const styles = StyleSheet.create({
     },
     searchBar: {
         flex: 1,
-        height: '5%',
+        height: '10%',
         width: '85%',
         margin: 12,
         borderWidth: 1,
-        padding: 10,
+        padding: '3%',
         paddingLeft: '8%',
         borderRadius: 10,
         backgroundColor: 'transparent',
