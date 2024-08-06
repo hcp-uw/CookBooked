@@ -5,9 +5,14 @@ import { db } from "../config/firebaseConfig.js";
 var router = express.Router();
 
 const pantryJSON = "data/pantry.json"
+
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
 // add specific items with quantities to json
 router.post('/add', async (req, res) => {
-    let item = req.body.item.toLowerCase();
+    let item = capitalizeFirstLetter(req.body.item.toLowerCase());
     let quantity = parseInt(req.body.quantity);
     let uid = req.body.uid;
 
@@ -69,7 +74,7 @@ router.get('/', async (req, res) => {
     if (snapshot.exists()) {
         res.status(200).json({pantry : snapshot.val()});
     } else {
-        res.status(404).json({pantry: {}});
+        res.status(200).json({pantry: {}});
     }
     // try {
     //     const jsonData = await fs.readFile(pantryJSON);
