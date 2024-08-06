@@ -16,31 +16,22 @@ const VirtualPantry = ({ navigation }) => {
   // State to store the fetched items
   const { user } = useUser();
   // const [items, setItems] = useState([]);
+  const [loggedIn, setLoggedIn] = useState(false);
   const [pantryItems, setPantryItems] = useState(null);
   const [pantryText, setPantryText] = useState('');
 
-  
+
   useEffect(() => {
-    const db = getDatabase(firebase);
-    const itemsRef = ref(db, 'foodItems');
-    loadPantry(user.uid);
+    setLoggedIn(!!user);
+  }, [user]);
 
-    // Subscribe to the itemsRef and listen continuously for data changes
-    // const unsubscribe = onValue(itemsRef, (snapshot) => {
-    //     const data = snapshot.val();
-    //     const loadedItems = [];
-    //     for (const key in data) {
-    //         loadedItems.push({
-    //             id: key,
-    //             ...data[key]
-    //         });
-    //     }
-    //     setItems(loadedItems); // Update the state with the fetched items
-    // });
-
-    // Cleanup function to remove the listener when the component unmounts
-    return () => unsubscribe();
-  }, []); // Empty dependency array to run only on component mount
+  useEffect(() => {
+    if (loggedIn) {
+      const db = getDatabase(firebase);
+      const itemsRef = ref(db, 'foodItems');
+      loadPantry(user.uid);
+    }
+  }, [loggedIn]);
 
   /**
    * This function updates the quantity of an item with the given itemId by the specified amount.
@@ -82,29 +73,6 @@ const VirtualPantry = ({ navigation }) => {
     //   return prevItems;
     // });
   };
-
-  // This is for setting the pantry information at the top of the page
-  // useEffect(() => {
-  //     const init = async () => {
-  //         try {
-  //             const data = await loadPantry();
-  //             setPantryText(formatPantryText(data));
-  //         } catch (error) {
-  //             console.error('Error fetching data:', error);
-  //             setPantryText('No data available');
-  //         }
-  //     };
-  //     init();
-  // }, []);
-
-  // const formatPantryText = (data) => {
-  //     if (!data) return 'Your Pantry is Empty!';
-  //     let pantryText = `${data.username}'s Pantry Contents:\n`;
-  //     for (let [item, quantity] of Object.entries(data.pantry)) {
-  //         pantryText += `${item}: ${quantity}\n`;
-  //     }
-  //     return pantryText;
-  // };
 
   async function loadPantry(uid) {
     try {
@@ -173,50 +141,6 @@ const VirtualPantry = ({ navigation }) => {
   //   }
   // }
 
-  // const handleRefresh = async (type) => {
-  //   if (type === "pantry") {
-  //     try {
-  //       const data = await loadPantry();
-  //       setPantryText(formatPantryText(data));
-  //     } catch (error) {
-  //       console.error('Error fetching data:', error);
-  //       setPantryText('No data available');
-  //     }
-  //   } else if (type === "get_receipt") {
-  //     try {
-  //       const data = await getReceiptItems();
-  //       setPantryText(data);
-  //     } catch (error) {
-  //       console.error('Error fetching data:', error);
-  //       setPantryText('No data available');
-  //     }
-  //   } else if (type === "post_receipt") {
-  //     try {
-  //       const response = await postReceiptItems();
-  //       setPantryText("Pantry Updated");
-  //     } catch (error) {
-  //       console.error('Error fetching data:', error);
-  //       setPantryText('No data available');
-  //     }
-  //   } else if (type === "add_to_pantry") {
-  //     try {
-  //       const response = await addToPantry("Carrot", 5);
-  //       setPantryText("Pantry Updated");
-  //     } catch (error) {
-  //       console.error('Error fetching data:', error);
-  //       setPantryText('No data available');
-  //     }
-  //   } else if (type === "remove_from_pantry") {
-  //     try {
-  //       const response = await remove_from_pantry("Carrot", 3);
-  //       setPantryText("Pantry Updated");
-  //     } catch (error) {
-  //       console.error('Error fetching data:', error);
-  //       setPantryText('No data available');
-  //     }
-  //   }
-  // };
-
   const items = pantryItems
         ? Object.keys(pantryItems).map(key => ({
             name: key,
@@ -227,65 +151,32 @@ const VirtualPantry = ({ navigation }) => {
 
   return (
     <ScrollView>
+      {/* // Header of Page  */}
+      <View style={styles.header}>
+        <Text style={styles.headerTitle}>Your Pantry</Text>
+        <Image
+          source={images.avatar}
+          resizeMode="contain"
+          style={styles.userProfileImage}
+        />
+        <Button
+          onPress={() => addToPantry("CarroT", 5)}
+          title="Add Items to Pantry"
+          color="#841584"
+          accessibilityLabel="Button to get add items to pantry"
+        />
+      </View>
+
+      {/* Divider line (would want to move styling to themes?) */}
+      <View style={DIVIDER.header}/>
+      
       <View>
-        {/* // Header of Page  */}
-        <View style={styles.header}>
-          <Text style={styles.headerTitle}>Your Pantry</Text>
-          <Image
-            source={images.avatar}
-            resizeMode="contain"
-            style={styles.userProfileImage}
-          />
-          <Button
-            onPress={() => addToPantry("CarroT", 5)}
-            title="Add Items to Pantry"
-            color="#841584"
-            accessibilityLabel="Button to get add items to pantry"
-          />
-          {/* <Button
-            onPress={() => handleRefresh("pantry")}
-            title="Get Pantry Items"
-            color="#841584"
-            accessibilityLabel="Button to refresh pantry"
-          />
-          <Button
-            onPress={() => handleRefresh("get_receipt")}
-            title="Get Receipt Items"
-            color="#841584"
-            accessibilityLabel="Button to get receipt items"
-          />
-          <Button
-            onPress={() => handleRefresh("post_receipt")}
-            title="Add Receipt Items to Pantry"
-            color="#841584"
-            accessibilityLabel="Button to get add items from receipt to pantry"
-          />
-          
-          <Button
-            onPress={() => handleRefresh("remove_from_pantry")}
-            title="Remove Items from Pantry"
-            color="#841584"
-            accessibilityLabel="Button to remove items from pantry"
-          /> */}
-        </View>
+        <Text>{pantryText}</Text>
+      </View>
 
-        {/* Divider line (would want to move styling to themes?) */}
-        <View style={DIVIDER.header}/>
-
-        <View>
-          <Text>{pantryText}</Text>
-        </View>
-
-        {/* Pantry Cards Section */}
+      {/* Pantry Cards Section */}
+      { loggedIn ? (
         <ScrollView style={styles.container}>
-          {/* <PantryCard
-            itemId={"1"}
-            itemName={"Apple"}
-            lastAdded={"01 Jan, 2023"}
-            numItems={2}
-            // handleNavigate={() => router.push(``)}
-          /> */}
-
           {items.map(item => (
                   <PantryCard
                       key={item.name}
@@ -296,8 +187,12 @@ const VirtualPantry = ({ navigation }) => {
                       // handleNavigate={() => handleNavigate(item.id)}
                   />
               ))}
-        </ScrollView>
-      </View>
+        </ScrollView> 
+      ) : (
+        <View>
+          <Text>Log in to see your Virtual Pantry!</Text>
+        </View>
+      )}
     </ScrollView>
   )
 }
