@@ -30,13 +30,13 @@ const styles = StyleSheet.create({
   image: {
     width: 100,
     height: 100,
-    borderRadius: SIZES.small,
-    borderColor: 'red',
-    borderWidth: 2,
+    // borderRadius: SIZES.small,
+    // borderColor: 'red',
+    // borderWidth: 2,
   },
   textStyle: {
     fontFamily: FONT.regular,
-    fontSize: 17,
+    fontSize: 10,
     textAlign: 'left',
   },
   textContainer: {

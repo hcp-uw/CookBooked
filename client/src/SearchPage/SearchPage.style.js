@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
         fontFamily: FONT.bold,
         color: COLORS.black,
         paddingLeft: SIZES.large,
-        fontWeight: '700'       // also add to theme.js to make it as a constant in the future 
+        fontWeight: '700',       // also add to theme.js to make it as a constant in the future 
     },
     headerBtn: {
         fontSize: SIZES.medium,
@@ -64,8 +64,8 @@ const styles = StyleSheet.create({
         height: '100%',
         alignContent: 'center',
         justifyContent: 'center',
-        paddingRight: 70
+        paddingRight: 70,
     }
-})
+});
 
 export default styles;

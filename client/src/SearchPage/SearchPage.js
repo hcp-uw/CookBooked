@@ -6,7 +6,6 @@
 import React, { useState } from 'react';
 // Import specific components and utilities from React Native for building the user interface.
 import { Text, StyleSheet, Button, View, Image, Modal, Pressable, ScrollView } from "react-native"; 
-import { StyleSheet } from "react-native";
 import { DIVIDER, images, COLORS} from '../constants';
 import styles from './SearchPage.style';
 
