@@ -32,7 +32,8 @@ const styles = StyleSheet.create({
         marginTop: SIZES.xSmall,
         flexDirection: 'row',
         alignItems: 'center',
-        paddinLeft: '4%',
+        paddingLeft: '4%',
+        paddingTop: '2%',
     },
     searchBar: {
         flex: 1,

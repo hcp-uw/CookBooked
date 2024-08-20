@@ -20,10 +20,16 @@ const SearchPage = ({ navigation }) => {
                         source={images.avatar}
                         resizeMode="contain"
                         style={styles.userProfileImage}
-                    />
-                    {/* Divider line (would want to move styling to themes?) */}
-                </View>
-                <View style={DIVIDER.header}/>
+                    />                </View>
+                {/* Divider line (would want to move styling to themes?) */}
+                <View
+                    style={{
+                    borderColor: '#F2555A',
+                    borderBottomWidth: StyleSheet.hairlineWidth,
+                    borderWidth: 1,
+                    margin: 10
+                    }}
+                />
                 <View style={styles.searchBarContainer}>
                     <Icon name="search" size={30} color={COLORS.gray} style={styles.iconSearch}/>
                     <TextInput
