@@ -1,18 +1,29 @@
-import * as React from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './HomePage.style';
 import { useUser } from '../../UserContext';
-import { Text, StyleSheet, ScrollView, Button, View, Image, Modal, Pressable, FlatList } from "react-native"; 
+import { Text, StyleSheet, ScrollView, Button, View, Image, Modal, Pressable, FlatList, TouchableOpacity } from "react-native"; 
 import { TextInput } from 'react-native-paper';
-import Icon from 'react-native-vector-icons/Ionicons'; 
-import { COLORS } from '../constants';
+import Icon from 'react-native-vector-icons/Ionicons';
+import firebase from "../../../firebase"; 
+import { getDatabase, ref} from "firebase/database";
+import { COLORS, images } from '../constants';
 // Import the mainPageCard component where custom card components are stored.
 import MainPageCard from '../Common/Cards/mainPage/mainPageCard';
 
-
-
-
 const HomePage = ({ navigation }) => {
-  const { user, logout } = useUser();
+
+  function handleImagePress() {
+    // need to add user login info when we do this
+    navigation.navigate("ProfilePage")
+    
+  }
+
+  const { user } = useUser();
+  const [loggedIn, setLoggedIn] = useState(false);
+
+  useEffect(() => {
+    setLoggedIn(!!user);
+  }, [user]);
   
   const foodPrints = [
     { id: '1', title: 'Salad'},
@@ -38,7 +49,6 @@ const HomePage = ({ navigation }) => {
     await logout();
     navigation.navigate('StartPage');
   }
-
   const renderItem = ({ item }) => (
     <MainPageCard
       itemName={item.title}
@@ -49,11 +59,20 @@ const HomePage = ({ navigation }) => {
     // if you want to implement styles for ScrollView use contentContainer Style
     <ScrollView>
       <View style={styles.container}>
-        <Image
-          source={require('../../../client/assets/foodImg/CBTofuSalad.png')}
-          style={styles.image}
-          resizeMode="cover"
-        />
+        <View style={styles.imageContainer}>
+          <Image
+            source={require('../../../client/assets/foodImg/CBTofuSalad.png')}
+            style={styles.image}
+            resizeMode="cover"
+          />
+          <TouchableOpacity onPress={handleImagePress} style={styles.userProfileImage}>
+            <Image
+                source={images.avatar}
+                resizeMode="contain"
+                style={styles.userProfileImage}
+            />
+          </TouchableOpacity>
+        </View>
         <View style={styles.searchBarContainer}>
           <Icon name="search" size={30} color={COLORS.gray} style={styles.iconSearch}/>
           <TextInput
