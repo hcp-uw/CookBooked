@@ -9,7 +9,7 @@ import HomePage from '../HomePage/HomePage';
 import PantryPage from '../VirtualPantry/VirtualPantry';
 import ReceiptPage from '../ReceiptPage/ReceiptPage';
 import SearchPage from '../SearchPage/SearchPage';
-import SettingPage from '../SettingPage/SettingPage';
+import SettingPage from '../ProfilePage/Profile';
 
 
 const Tab = createBottomTabNavigator();
