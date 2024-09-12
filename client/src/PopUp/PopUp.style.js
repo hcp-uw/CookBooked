@@ -26,6 +26,7 @@ const styles = StyleSheet.create({
       borderRadius: 20,
       padding: 10,
       elevation: 2,
+      marginBottom: 3,
     },
     buttonOpen: {
       backgroundColor: '#F194FF',
@@ -42,6 +43,11 @@ const styles = StyleSheet.create({
       marginBottom: 15,
       textAlign: 'center',
     },
+    image: {
+      width: '100%',
+      height: '100%',
+      borderRadius: 8,
+  },
 });
 
 export default styles;

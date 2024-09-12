@@ -1,21 +1,14 @@
 // Import core React functionality from the React package.
 import React, { useState } from 'react';
 // Import specific components and utilities from React Native for building the user interface.
-import { CheckBox, Text, View, Modal, Pressable } from "react-native"; 
+import { CheckBox, Text, View, Modal, Pressable, Image } from "react-native"; 
 // Import specific styles for the ReceiptPage component
 import styles from './PopUp.style'
 import CheckBoxed from '../Loop/Loop'
-import PopUpReceipt from './PopUpReceipt'
 
 // PopUpVisible (boolean for if we can see it) and setPopUpVisible (update popUpVisible)
 // are hooks(properties) that control the visibility of the PopUp.
-const PopUp = ({ popUpVisible, setPopUpVisible, changePopUp }) => {
-
-    const [popUpVisibleReceipt, setPopUpVisibleReceipt] = useState(false);
-
-    const togglePopUpReceipt = () => {
-      setPopUpVisibleReceipt(!popUpVisibleReceipt)
-    }
+const PopUpReceipt = ({ popUpVisible, setPopUpVisible, changePopUp }) => {
 
     return (
       <View style={styles.centeredView}>
@@ -29,20 +22,17 @@ const PopUp = ({ popUpVisible, setPopUpVisible, changePopUp }) => {
           }}>
           <View style={styles.centeredView}>
             <View style={styles.modalView}>
-              <Text style={styles.modalText}>Receipt Items</Text>
-              <CheckBoxed numberOfItems={5}/>
-              <Pressable
-                style={[styles.button, styles.buttonClose]}
-                onPress={() => setPopUpVisibleReceipt(true)}>
-                <Text style={styles.textStyle}>Receipt View</Text>
-              </Pressable>
+              <Text style={styles.modalText}>Receipt</Text>
+              <Image
+                    source={require('../../../client/assets/receipts/receipt1.jpeg')}
+                    style={styles.image}
+                    resizeMode='cover'
+                />
               <Pressable
                 style={[styles.button, styles.buttonClose]}
                 onPress={() => setPopUpVisible(false)}>
                 <Text style={styles.textStyle}>Enter</Text>
               </Pressable>
-
-              <PopUpReceipt popUpVisible={popUpVisibleReceipt} setPopUpVisible={setPopUpVisibleReceipt}/>
             </View>
           </View>
         </Modal>
@@ -50,5 +40,5 @@ const PopUp = ({ popUpVisible, setPopUpVisible, changePopUp }) => {
     )
 };
 
-export default PopUp;
+export default PopUpReceipt;
 
