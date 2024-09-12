@@ -57,12 +57,12 @@ const ReceiptPage = ({ navigation }) => {
 
         {/* Receipt Cards Section */}
         <View style={styles.container}>
-          <ReceiptCard
+          {/* <ReceiptCard
               storeName={"Safeway"}
               date={"11 Jan 2023, 4:57 am"}
               numItems={4}
               handleNavigate={() => test()}
-          /> 
+          />  */}
           <ReceiptCard
               storeName={"Safeway"}
               date={"11 Jan 2023, 4:57 am"}
@@ -72,8 +72,8 @@ const ReceiptPage = ({ navigation }) => {
 
           <PopUp popUpVisible={popUpVisible} setPopUpVisible={setPopUpVisible}/>
 
-          <Button onPress={handleButtonClick} title="Go to virtual pantry" color="blue" />
-          <Button onPress={handleButtonClickRushi} title="Go to rushi's virtual pantry" color="blue" />
+          {/* <Button onPress={handleButtonClick} title="Go to virtual pantry" color="blue" />
+          <Button onPress={handleButtonClickRushi} title="Go to rushi's virtual pantry" color="blue" /> */}
         </View>
         <Image
           source={require('../../assets/Dubs_Story_Image.jpg')}
