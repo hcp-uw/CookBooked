@@ -83,7 +83,7 @@ const HomePage = ({ navigation }) => {
           />
         </View>
         <View style={styles.textContainer}>
-          <Text style={styles.textStyle}>Welcome, {user ? user.email : 'Guest'}</Text>
+          {/* <Text style={styles.textStyle}>Welcome, {user ? user.email : 'Guest'}</Text> */}
           <Text style={styles.textStyle}>Your foodprints</Text>
           <FlatList
             // each card we want to create
@@ -113,9 +113,9 @@ const HomePage = ({ navigation }) => {
             showsHorizontalScrollIndicator={false}
           />
         </View>
-        <View>
+        {/* <View>
           <Button title="Logout" onPress={userLogout} color="#F2555A" />
-        </View>
+        </View> */}
       </View>
     </ScrollView>
   )
