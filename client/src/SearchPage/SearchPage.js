@@ -39,7 +39,7 @@ const SearchPage = ({ navigation }) => {
                         style={styles.searchBar}
                     />
                 </View>
-                <Text style={styles.textStyle}>Your foodprints</Text>
+                {/* <Text style={styles.textStyle}>Your foodprints</Text> */}
             </View>
         </ScrollView>
     )
