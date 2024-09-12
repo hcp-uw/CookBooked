@@ -41,7 +41,7 @@ const StartPage = ({ navigation }) => {
             <View style={styles.buttonContainer}>
                 <CustomButton onPress={loginPage} title="Login" color={COLORS.primary} borderColor = {COLORS.primary} buttonTextStyle={styles.buttonTextWhite} />
                 <CustomButton onPress={signupPage} title="Sign up" color={COLORS.white} borderColor = {COLORS.primary} buttonTextStyle={styles.buttonTextPink}/>
-                <Button onPress={startPage} title="Go to home" color="blue" />
+                {/* <Button onPress={startPage} title="Go to home" color="blue" /> */}
             </View>
 
         </View>
