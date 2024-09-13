@@ -162,7 +162,7 @@ const VirtualPantry = ({ navigation }) => {
       {/* // Header of Page  */}
       <View style={styles.header}>
         <Text style={styles.headerTitle}>Your Pantry</Text>
-        { loggedIn ? (
+        {/* { loggedIn ? (
           <View style={styles.imgContainer}>
             <TouchableOpacity onPress={handleImagePress}>
               <Image
@@ -171,14 +171,14 @@ const VirtualPantry = ({ navigation }) => {
                 style={styles.userProfileImage}
               />
             </TouchableOpacity>
-        </View>
+          </View>
         ) : (
           <View>
             <TouchableOpacity onPress={handleImagePress} style={styles.button}>
               <Text style={styles.login}>Login/Signup</Text>
             </TouchableOpacity>
           </View>
-        )}
+        )} */}
       </View>
 
       {/* Divider line (would want to move styling to themes?) */}

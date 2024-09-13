@@ -4,36 +4,27 @@ const styles = StyleSheet.create({
     centeredView: {
       flex: 1,
       justifyContent: 'center',
-      alignItems: 'center',
-      backgroundColor: 'rgba(0, 0, 0, 0.5)'
+      alignItems: 'center'
     },
     modalView: {
+      width: '35%', 
       margin: 20,
       backgroundColor: 'white',
       borderRadius: 15,
-      paddingHorizontal: 100,
-      paddingVertical: 25, 
+      padding: 20,
       alignItems: 'center',
       shadowColor: '#000',
-      shadowOffset: {
-        width: 0,
-        height: 2,
-    },
+      shadowOffset: { width: 0, height: 2 },
       shadowOpacity: 0.25,
       shadowRadius: 4,
-      elevation: 5,
-    },
-    button: {
-      borderRadius: 15,
-      padding: 10,
-      elevation: 2,
-      marginBottom: 10,
-    },
-    buttonOpen: {
-      backgroundColor: '#F194FF',
+      elevation: 5, // Shadow and elevation effects
     },
     buttonClose: {
       backgroundColor: '#2196F3',
+      borderRadius: 10,
+      padding: 10,
+      marginTop: 10, // Spacing above the button
+      elevation: 2,
     },
     textStyle: {
       color: 'white',
@@ -41,16 +32,16 @@ const styles = StyleSheet.create({
       textAlign: 'center',
     },
     modalText: {
-      marginBottom: 25,
+      marginBottom: 15,
       fontSize: 30,
       textDecorationLine: 'underline',
       fontWeight: 'bold',
       textAlign: 'center',
     },
     image: {
-      width: '100%',
-      height: '100%'
-  },
+      width: 300,
+      height: 450,
+    },
 });
 
 export default styles;

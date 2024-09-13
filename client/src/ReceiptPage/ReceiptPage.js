@@ -13,6 +13,7 @@ import ReceiptCard from '../Common/Cards/Receipt/ReceiptCard';
 // Import specific styles for the ReceiptPage component
 import styles from './ReceiptPage.style'
 import PopUp from '../PopUp/PopUp'
+import { DIVIDER } from '../constants';
 
 const ReceiptPage = ({ navigation }) => {
   const [popUpVisible, setPopUpVisible] = useState(false);
@@ -46,14 +47,7 @@ const ReceiptPage = ({ navigation }) => {
         </View>
 
         {/* Divider line (would want to move styling to themes?) */}
-        <View
-          style={{
-            borderColor: '#F2555A',
-            borderBottomWidth: StyleSheet.hairlineWidth,
-            borderWidth: 1,
-            margin: 10
-          }}
-        />
+        <View style={DIVIDER.header}/>
 
         {/* Receipt Cards Section */}
         <View style={styles.container}>

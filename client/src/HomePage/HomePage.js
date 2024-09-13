@@ -65,13 +65,13 @@ const HomePage = ({ navigation }) => {
             style={styles.image}
             resizeMode="cover"
           />
-          <TouchableOpacity onPress={handleImagePress} style={styles.userProfileImage}>
+          {/* <TouchableOpacity onPress={handleImagePress} style={styles.userProfileImage}>
             <Image
                 source={images.avatar}
                 resizeMode="contain"
                 style={styles.userProfileImage}
             />
-          </TouchableOpacity>
+          </TouchableOpacity> */}
         </View>
         <View style={styles.searchBarContainer}>
           <Icon name="search" size={30} color={COLORS.gray} style={styles.iconSearch}/>

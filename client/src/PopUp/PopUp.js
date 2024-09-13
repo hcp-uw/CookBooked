@@ -20,7 +20,6 @@ const PopUp = ({ popUpVisible, setPopUpVisible, changePopUp }) => {
     return (
       <View style={styles.centeredView}>
         <Modal
-          animationType="slide"
           transparent={true}
           visible={popUpVisible}
           onRequestClose={() => {
@@ -39,7 +38,7 @@ const PopUp = ({ popUpVisible, setPopUpVisible, changePopUp }) => {
               <Pressable
                 style={[styles.button, styles.buttonClose]}
                 onPress={() => setPopUpVisible(false)}>
-                <Text style={styles.textStyle}>Enter</Text>
+                <Text style={styles.textStyle}>Close</Text>
               </Pressable>
 
               <PopUpReceipt popUpVisible={popUpVisibleReceipt} setPopUpVisible={setPopUpVisibleReceipt}/>

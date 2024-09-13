@@ -4,10 +4,8 @@ import { COLORS, FONT, SIZES } from "../constants";
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: SIZES.xLarge,
-    marginBottom: SIZES.xLarge,
-    marginLeft: SIZES.medium,
-    marginRight: SIZES.medium,
+    marginVertical: 5,
+    marginHorizontal: 15,
   },
   header: {
     flexDirection: "row",
@@ -17,18 +15,15 @@ const styles = StyleSheet.create({
   },
   headerTitle: {
     fontSize: SIZES.xxLarge,
-    fontFamily: FONT.medium,
-    color: COLORS.primary,
-    paddingLeft: 30
+    fontFamily: FONT.bold,
+    color: COLORS.black,
+    paddingLeft: SIZES.large,
+    fontWeight: '700'       // also add to theme.js to make it as a constant in the future
   },
   headerBtn: {
     fontSize: SIZES.medium,
     fontFamily: FONT.medium,
     color: COLORS.gray,
-  },
-  cardsContainer: {
-    marginTop: SIZES.medium,
-    gap: SIZES.small,
   },
 });
 

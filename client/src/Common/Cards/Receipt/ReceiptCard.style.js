@@ -3,18 +3,22 @@ import { StyleSheet } from "react-native";
 import { COLORS, SHADOWS, SIZES } from "../../../constants";
 
 const styles = StyleSheet.create({
-  container: {
-    // flex: 1,
-    justifyContent: "space-between",
-    alignItems: "center",
-    flexDirection: "row",
-    padding: SIZES.medium,
-    borderRadius: SIZES.small,
-    backgroundColor: "#FFF",
-    ...SHADOWS.medium,
-    shadowColor: COLORS.white,
-    height: 150,
-    marginBottom: 10,
+  card: {
+    backgroundColor: COLORS.white,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 15,
+    shadowColor: COLORS.gray, // Shadow color
+    shadowOffset: {
+      width: 2,  // Horizontal offset
+      height: 2, // Vertical offset
+    },
+    shadowOpacity: 0.3, // Opacity of the shadow
+    shadowRadius: 5, // Blur radius of the shadow
+    elevation: 5,
+    borderRadius: 15,
+    padding: 10,
+    position: 'relative',
   },
   logoContainer: {
     width: 110,

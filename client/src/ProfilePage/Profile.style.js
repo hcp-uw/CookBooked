@@ -3,12 +3,6 @@ import { StyleSheet } from "react-native";
 import { COLORS, FONT, SIZES } from "../constants";
 
 const styles = StyleSheet.create({
-  container: {
-    // marginTop: SIZES.xLarge,
-    marginBottom: SIZES.xLarge,
-    marginLeft: SIZES.medium,
-    marginRight: SIZES.medium,
-  },
   header: {
     flexDirection: "row",
     justifyContent: "space-between",
@@ -27,10 +21,11 @@ const styles = StyleSheet.create({
     height: 50,
   },
   card: {
+    backgroundColor: COLORS.white,
     flexDirection: 'row',
     alignItems: 'center',
     gap: 15,
-    shadowColor: 'black', // Shadow color
+    shadowColor: COLORS.gray, // Shadow color
     shadowOffset: {
       width: 2,  // Horizontal offset
       height: 2, // Vertical offset

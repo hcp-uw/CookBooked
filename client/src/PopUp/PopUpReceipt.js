@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 // Import specific components and utilities from React Native for building the user interface.
 import { CheckBox, Text, View, Modal, Pressable, Image } from "react-native"; 
 // Import specific styles for the ReceiptPage component
-import styles from './PopUp.style'
+import styles from './PopUpReceipt.style'
 import CheckBoxed from '../Loop/Loop'
 
 // PopUpVisible (boolean for if we can see it) and setPopUpVisible (update popUpVisible)
@@ -13,7 +13,6 @@ const PopUpReceipt = ({ popUpVisible, setPopUpVisible, changePopUp }) => {
     return (
       <View style={styles.centeredView}>
         <Modal
-          animationType="slide"
           transparent={true}
           visible={popUpVisible}
           onRequestClose={() => {
@@ -26,12 +25,12 @@ const PopUpReceipt = ({ popUpVisible, setPopUpVisible, changePopUp }) => {
               <Image
                     source={require('../../../client/assets/receipts/receipt1.jpeg')}
                     style={styles.image}
-                    resizeMode='cover'
+                    resizeMode='contain'
                 />
               <Pressable
                 style={[styles.button, styles.buttonClose]}
                 onPress={() => setPopUpVisible(false)}>
-                <Text style={styles.textStyle}>Enter</Text>
+                <Text style={styles.textStyle}>Close</Text>
               </Pressable>
             </View>
           </View>

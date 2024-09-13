@@ -14,7 +14,7 @@ const ReceiptCard = ({ storeName, date, numItems, handleNavigate }) => {
     // console.log("Rendering ReceiptCard", storeName, date, numItems);
   return (
     <TouchableOpacity
-      style={styles.container}
+      style={styles.card}
       onPress={handleNavigate}
     >
       <TouchableOpacity style={styles.logoContainer}>

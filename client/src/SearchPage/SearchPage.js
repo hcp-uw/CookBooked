@@ -16,11 +16,12 @@ const SearchPage = ({ navigation }) => {
             <View style={styles.container}>
                 <View style={styles.header}>
                     <Text style={styles.headerTitle}>Search</Text>
-                    <Image
+                    {/* <Image
                         source={images.avatar}
                         resizeMode="contain"
                         style={styles.userProfileImage}
-                    />                </View>
+                    />                 */}
+                </View>
                 {/* Divider line (would want to move styling to themes?) */}
                 <View
                     style={{
