@@ -29,46 +29,44 @@ const PantryCard = ({ itemName, lastAdded, numItems, handleUpdateQuantity, handl
     };
 
     return (
-        <View style={styles.shadowContainer}>
-            <View style={styles.container}>
-                <TouchableOpacity style={styles.logoContainer}>
-                    <Image
-                    source={images.circlePlaceholder}
-                    resizeMode="contain"
-                    style={styles.logoImage}
-                    />
-                </TouchableOpacity>  
+        <View style={styles.card}>
+            <TouchableOpacity style={styles.logoContainer}>
+                <Image
+                source={images.circlePlaceholder}
+                resizeMode="contain"
+                style={styles.logoImage}
+                />
+            </TouchableOpacity>  
 
-                <View style={styles.textContainer}>
-                    <View style={styles.contentContainer}>
-                        <Text style={styles.itemName} numberOfLines={1}>
-                            {itemName}
-                        </Text>
+            <View style={styles.textContainer}>
+                <View style={styles.contentContainer}>
+                    <Text style={styles.itemName} numberOfLines={1}>
+                        {itemName}
+                    </Text>
 
-                        <Text style={styles.contentTitle}>
-                            Last Added: <Text style={styles.contentDetail}>{lastAdded}</Text>
-                        </Text>
-                        
-                        <Text style={styles.contentTitle}>
-                            Quantity: <Text style={styles.contentDetail}>{numItems}</Text>
-                        </Text>
-                    </View>
-
-                    {/* <View style={styles.adjustButtons}>
-                            <TouchableOpacity onPress={() => updateQuantity(-1)} style={styles.adjustButtonLeft}>
-                                <Text>-</Text>
-                            </TouchableOpacity>
-
-                            <View style={styles.divider} />
-
-                            <TouchableOpacity onPress={() => updateQuantity(1)} style={styles.adjustButtonRight}>
-                                <Text>+</Text>
-                            </TouchableOpacity>
-                        </View> */}
-                    <TouchableOpacity style={styles.viewDetailsButton}>
-                        <Text style={styles.viewDetailsText}>View details</Text>
-                    </TouchableOpacity>
+                    <Text style={styles.contentTitle}>
+                        Last Added: <Text style={styles.contentDetail}>{lastAdded}</Text>
+                    </Text>
+                    
+                    <Text style={styles.contentTitle}>
+                        Quantity: <Text style={styles.contentDetail}>{numItems}</Text>
+                    </Text>
                 </View>
+
+                {/* <View style={styles.adjustButtons}>
+                        <TouchableOpacity onPress={() => updateQuantity(-1)} style={styles.adjustButtonLeft}>
+                            <Text>-</Text>
+                        </TouchableOpacity>
+
+                        <View style={styles.divider} />
+
+                        <TouchableOpacity onPress={() => updateQuantity(1)} style={styles.adjustButtonRight}>
+                            <Text>+</Text>
+                        </TouchableOpacity>
+                    </View> */}
+                <TouchableOpacity style={styles.viewDetailsButton}>
+                    <Text style={styles.viewDetailsText}>View details</Text>
+                </TouchableOpacity>
             </View>
         </View>
     )

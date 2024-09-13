@@ -141,14 +141,6 @@ const VirtualPantry = ({ navigation }) => {
   //   }
   // }
 
-  function handleImagePress() {
-    if (loggedIn) {
-      navigation.navigate("ProfilePage")
-    } else {
-      navigation.navigate("StartPage")
-    }
-  }
-
   const items = pantryItems
         ? Object.keys(pantryItems).map(key => ({
             name: key,
@@ -201,12 +193,14 @@ const VirtualPantry = ({ navigation }) => {
                       // handleNavigate={() => handleNavigate(item.id)}
                   />
               ))}
-          <Button
-            onPress={() => addToPantry("CarroT", 5)}
-            title="Add Items to Pantry"
-            color="#841584"
-            accessibilityLabel="Button to get add items to pantry"
-          />
+          <View style={{ marginHorizontal: 15 }}>
+            <Button
+              onPress={() => addToPantry("CarroT", 5)}
+              title="Add Items to Pantry"
+              color="#841584"
+              accessibilityLabel="Button to add items to pantry"
+            />
+          </View>
         </ScrollView> 
       ) : (
         <View>

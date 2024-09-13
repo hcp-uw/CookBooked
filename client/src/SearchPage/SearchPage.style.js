@@ -3,11 +3,18 @@ import { StyleSheet } from "react-native";
 import { COLORS, FONT, SIZES } from "../constants";
 
 const styles = StyleSheet.create({
-    container: {
-        marginTop: SIZES.xLarge,
-        marginBottom: SIZES.xLarge,
-        marginLeft: SIZES.medium,
-        marginRight: SIZES.medium,
+    header: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "center",
+        marginTop: SIZES.small,
+    },
+    headerTitle: {
+        fontSize: SIZES.xxLarge,
+        fontFamily: FONT.bold,
+        color: COLORS.black,
+        paddingLeft: SIZES.large,
+        fontWeight: '700'       // also add to theme.js to make it as a constant in the future
     },
     textStyle: {
         fontFamily: FONT.bold,
@@ -18,12 +25,6 @@ const styles = StyleSheet.create({
     textContainer: {
         flexDirection: 'row',
         flex: 1,
-    },
-    header: {
-        flexDirection: "row",
-        justifyContent: "space-between",
-        alignItems: "center",
-        marginTop: SIZES.small,
     },
     searchBarContainer: {
         width: '100%',
@@ -55,18 +56,6 @@ const styles = StyleSheet.create({
         // zIndex, the higher number lets it stack on top
         zIndex: 1,
         padding: '1%',
-    },
-    headerTitle: {
-        fontSize: SIZES.xxLarge,
-        fontFamily: FONT.bold,
-        color: COLORS.black,
-        paddingLeft: SIZES.large,
-        fontWeight: '700',       // also add to theme.js to make it as a constant in the future 
-    },
-    headerBtn: {
-        fontSize: SIZES.medium,
-        fontFamily: FONT.medium,
-        color: COLORS.gray,
     },
     cardsContainer: {
         marginTop: SIZES.medium,
