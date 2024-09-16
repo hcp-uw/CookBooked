@@ -21,7 +21,6 @@ router.post('/add', async (req, res) => {
     const snapshot = await get(itemRef);
     const updates = {}
     const timestamp = new Date().toISOString().substring(0, 10);
-    console.log(timestamp)
     updates[`${item}`] = {quantity: quantity, last_added: timestamp};
     if (snapshot.exists()) {
         updates[`${item}`].quantity += snapshot.val().quantity;

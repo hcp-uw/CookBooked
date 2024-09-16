@@ -37,10 +37,10 @@ const SignupScreen = () => {
       await set(ref(db, 'users/' + user.uid), {
         username: user.email,
         email: user.email,
-        pantry: {}
+        pantry: {},
+        receipts: {}
       });
-  
-      navigation.navigate('Home'); // should navigate to "sign in home page, not the login/signup pages"
+      navigation.navigate('HomePage'); // should navigate to "sign in home page, not the login/signup pages"
     } catch (error) {
       const errorMessage = error.message;
       setError(errorMessage);

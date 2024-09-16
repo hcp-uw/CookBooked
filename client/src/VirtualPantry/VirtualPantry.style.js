@@ -40,7 +40,26 @@ const styles = StyleSheet.create({
   login: {
     fontSize: 10,
     color: 'white',
-  }
+  },
+  addPantryBtn: {
+    backgroundColor: '#F2555A',
+    borderRadius: 100,
+    width: 60,
+    height: 60,
+    position: 'absolute',
+    bottom: 20,
+    right: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  buttonText: {
+    color: 'white',
+    fontSize: 30,
+    lineHeight: 30,
+    fontWeight: 700,
+    paddingBottom: 5,
+    textAlign: 'center',
+  },
 });
 
 export default styles;

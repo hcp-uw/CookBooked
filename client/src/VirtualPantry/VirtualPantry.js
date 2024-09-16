@@ -150,64 +150,73 @@ const VirtualPantry = ({ navigation }) => {
         : [];
 
   return (
-    <ScrollView>
-      {/* // Header of Page  */}
-      <View style={styles.header}>
-        <Text style={styles.headerTitle}>Your Pantry</Text>
-        {/* { loggedIn ? (
-          <View style={styles.imgContainer}>
-            <TouchableOpacity onPress={handleImagePress}>
-              <Image
-                source={images.avatar}
-                resizeMode="contain"
-                style={styles.userProfileImage}
+    <View style={{ flex: 1 }}>
+      <ScrollView>
+        {/* // Header of Page  */}
+        <View style={styles.header}>
+          <Text style={styles.headerTitle}>Your Pantry</Text>
+          {/* { loggedIn ? (
+            <View style={styles.imgContainer}>
+              <TouchableOpacity onPress={handleImagePress}>
+                <Image
+                  source={images.avatar}
+                  resizeMode="contain"
+                  style={styles.userProfileImage}
+                />
+              </TouchableOpacity>
+            </View>
+          ) : (
+            <View>
+              <TouchableOpacity onPress={handleImagePress} style={styles.button}>
+                <Text style={styles.login}>Login/Signup</Text>
+              </TouchableOpacity>
+            </View>
+          )} */}
+        </View>
+        {/* Divider line (would want to move styling to themes?) */}
+        <View style={DIVIDER.header}/>
+      
+        <View>
+          <Text>{pantryText}</Text>
+        </View>
+        {/* Pantry Cards Section */}
+        { loggedIn ? (
+          <ScrollView style={styles.container}>
+            {items.map(item => (
+                    <PantryCard
+                        key={item.name}
+                        itemName={item.name}
+                        lastAdded={item.lastAdded}
+                        numItems={item.quantity}
+                        handleUpdateQuantity={handleUpdateQuantity}
+                        // handleNavigate={() => handleNavigate(item.id)}
+                    />
+                ))}
+            {/* <View style={{ marginHorizontal: 15 }}>
+              <Button
+                onPress={() => addToPantry("CarroT", 5)}
+                title="Add Items to Pantry"
+                color="#841584"
+                accessibilityLabel="Button to add items to pantry"
               />
-            </TouchableOpacity>
-          </View>
+            </View> */}
+          </ScrollView>
         ) : (
           <View>
-            <TouchableOpacity onPress={handleImagePress} style={styles.button}>
-              <Text style={styles.login}>Login/Signup</Text>
-            </TouchableOpacity>
+            <Text>Log in to see your Virtual Pantry!</Text>
           </View>
-        )} */}
-      </View>
-
-      {/* Divider line (would want to move styling to themes?) */}
-      <View style={DIVIDER.header}/>
-      
-      <View>
-        <Text>{pantryText}</Text>
-      </View>
-
-      {/* Pantry Cards Section */}
-      { loggedIn ? (
-        <ScrollView style={styles.container}>
-          {items.map(item => (
-                  <PantryCard
-                      key={item.name}
-                      itemName={item.name}
-                      lastAdded={item.lastAdded}
-                      numItems={item.quantity} 
-                      handleUpdateQuantity={handleUpdateQuantity}
-                      // handleNavigate={() => handleNavigate(item.id)}
-                  />
-              ))}
-          <View style={{ marginHorizontal: 15 }}>
-            <Button
-              onPress={() => addToPantry("CarroT", 5)}
-              title="Add Items to Pantry"
-              color="#841584"
-              accessibilityLabel="Button to add items to pantry"
-            />
-          </View>
-        </ScrollView> 
-      ) : (
-        <View>
-          <Text>Log in to see your Virtual Pantry!</Text>
-        </View>
+        )}
+      </ScrollView>
+      { loggedIn && (
+        <TouchableOpacity
+          style={styles.addPantryBtn}
+          onPress={() => addToPantry("CarroT", 5)}
+          accessibilityLabel="Add receipt to pantry"
+        >
+          <Text style={styles.buttonText}>+</Text>
+        </TouchableOpacity>
       )}
-    </ScrollView>
+    </View>
   )
 }
 

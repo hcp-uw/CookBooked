@@ -1,5 +1,7 @@
 import express from 'express';
 import { promises as fs } from 'fs';
+import { ref, update, get, push, set } from 'firebase/database';
+import { db } from "../config/firebaseConfig.js";
 var router = express.Router();
 
 // getting the precreated receipt data for now
@@ -74,5 +76,26 @@ router.post('/', async (req, res) => {
         res.status(500).send('Error reading file');
     }
 });
+
+router.post('/add', async (req, res) => {
+    let items = req.body.items
+    let uid = req.body.uid;
+    const receiptRef = ref(db, `users/${uid}/receipts`);
+    const timestamp = new Date().toISOString().substring(0, 10);
+
+    const newReceipt = {
+        date: timestamp,
+        items: items
+    }
+
+    const newReceiptRef = push(receiptRef);
+    set(newReceiptRef, newReceipt)
+        .then(() => {
+            console.log('New receipt added successfully.');
+        })
+        .catch((error) => {
+            console.error('Error adding new receipt:', error);
+        });
+})
 
 export default router;

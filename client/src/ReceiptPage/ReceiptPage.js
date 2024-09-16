@@ -7,74 +7,89 @@
 // Import core React functionality from the React package.
 import React, { useState } from 'react';
 // Import specific components and utilities from React Native for building the user interface.
-import { Text, StyleSheet, Button, View, Image, Modal, Pressable, ScrollView } from "react-native"; 
+import { Text, StyleSheet, Button, View, Image, Modal, Pressable, ScrollView, TouchableOpacity } from "react-native"; 
 // Import the ReceiptCard component where custom card components are stored.
 import ReceiptCard from '../Common/Cards/Receipt/ReceiptCard';
 // Import specific styles for the ReceiptPage component
 import styles from './ReceiptPage.style'
 import PopUp from '../PopUp/PopUp'
 import { DIVIDER } from '../constants';
+import { useUser } from '../../UserContext';
 
 const ReceiptPage = ({ navigation }) => {
+  const { user } = useUser();
   const [popUpVisible, setPopUpVisible] = useState(false);
+
+  const itemList = {
+    cArrot: 5,
+    onION: 2,
+    Celery: 1,
+  }
 
   const togglePopUp = () => {
     setPopUpVisible(!popUpVisible)
   }
 
-  const handleButtonClick = () => {
-      console.log("Button clicked!");
-      navigation.navigate('VirtualPantry');
-      // You can perform any action you want here
-    };
-
-    const handleButtonClickRushi = () => {
-      console.log("Button clicked!");
-      navigation.navigate('rushiVirtualPantry');
-      // You can perform any action you want here
-    };
-
-    const test = () => {
-      console.log("Button clicked!");
+    async function addReceipt(items) {
+      try {
+        let response = await fetch("http://localhost:3000/receipts/add", {
+            method: "POST",
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({items: items, uid: user.uid})
+        });
+        if (!response.ok) {
+          throw new Error(`Failed to add items`);
+        }
+      } catch (error) {
+          console.error('Error posting data:', error);
+      }
     };
 
   return (
-    <ScrollView>
-      <View>
-        {/* // Header of Page  */}
-        <View style={styles.header}>
-          <Text style={styles.headerTitle}>Receipts</Text>
+    <View style={{ flex: 1 }}>
+      <ScrollView>
+        <View>
+          {/* // Header of Page  */}
+          <View style={styles.header}>
+            <Text style={styles.headerTitle}>Receipts</Text>
+          </View>
+          {/* Divider line (would want to move styling to themes?) */}
+          <View style={DIVIDER.header}/>
+          {/* Receipt Cards Section */}
+          <View style={styles.container}>
+            {/* <ReceiptCard
+                storeName={"Safeway"}
+                date={"11 Jan 2023, 4:57 am"}
+                numItems={4}
+                handleNavigate={() => test()}
+            />  */}
+            <ReceiptCard
+                storeName={"Safeway"}
+                date={"11 Jan 2023, 4:57 am"}
+                numItems={4}
+                handleNavigate={togglePopUp}
+            />
+            <PopUp popUpVisible={popUpVisible} setPopUpVisible={setPopUpVisible}/>
+            {/* <Button onPress={handleButtonClick} title="Go to virtual pantry" color="blue" />
+            <Button onPress={handleButtonClickRushi} title="Go to rushi's virtual pantry" color="blue" /> */}
+          </View>
+          {/* <Image
+            source={require('../../assets/Dubs_Story_Image.jpg')}
+            style={styles.image}
+          /> */}
         </View>
-
-        {/* Divider line (would want to move styling to themes?) */}
-        <View style={DIVIDER.header}/>
-
-        {/* Receipt Cards Section */}
-        <View style={styles.container}>
-          {/* <ReceiptCard
-              storeName={"Safeway"}
-              date={"11 Jan 2023, 4:57 am"}
-              numItems={4}
-              handleNavigate={() => test()}
-          />  */}
-          <ReceiptCard
-              storeName={"Safeway"}
-              date={"11 Jan 2023, 4:57 am"}
-              numItems={4}
-              handleNavigate={togglePopUp}
-          /> 
-
-          <PopUp popUpVisible={popUpVisible} setPopUpVisible={setPopUpVisible}/>
-
-          {/* <Button onPress={handleButtonClick} title="Go to virtual pantry" color="blue" />
-          <Button onPress={handleButtonClickRushi} title="Go to rushi's virtual pantry" color="blue" /> */}
-        </View>
-        <Image
-          source={require('../../assets/Dubs_Story_Image.jpg')}
-          style={styles.image}
-        />
-      </View>
-    </ScrollView>
+      </ScrollView>
+      <TouchableOpacity
+        style={styles.addReceiptBtn}
+        onPress={() => addReceipt(itemList)}
+        accessibilityLabel="Add receipt to pantry"
+      >
+        <Text style={styles.buttonText}>+</Text>
+      </TouchableOpacity>
+    </View>
+    
   )
 }
 
