@@ -4,6 +4,10 @@ import { COLORS, FONT, SIZES } from "../constants";
 
 const { width, height } = Dimensions.get('window');
 
+const smallScreen = width < 360; // small screens like older phones
+const mediumScreen = width >= 360 && width < 768; // medium screens like newer phones
+const largeScreen = width >= 768;
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -12,8 +16,6 @@ const styles = StyleSheet.create({
         // Change to 'center' to align items horizontally at the center
         alignItems: 'center', 
         // These cahnge the grey boarder around the page
-        paddingVertical: SIZES.medium,
-        paddingHorizontal: SIZES.medium,
         backgroundColor: COLORS.lightWhite,
     },
     sameLineContainer: {
@@ -24,45 +26,45 @@ const styles = StyleSheet.create({
     },
     titleText: {
         //fontFamily: FONT.regular,
-        fontSize: Math.min(width, height) * 0.05,
+        fontSize: 30,
         color: COLORS.black,
         fontWeight: 600,
-        marginBottom: SIZES.large,
-        marginLeft: SIZES.medium * 1.5,
+        alignSelf: "center",
     },
     subText: {
         //fontFamily: FONT.regular,
-        fontSize: Math.min(width, height) * 0.02,
+        alignSelf: 'flex-start',
+        fontSize: 16,
         color: COLORS.black,
         fontWeight: 400,
         marginBottom: SIZES.small,
     },
     forgotPasswordText: {
         //fontFamily: FONT.regular,
-        fontSize: Math.min(width, height) * 0.013,
+        fontSize: 12,
         color: COLORS.gray,
         fontWeight: 200,
         opacity: 0.8,
-        marginBottom: SIZES.small,
-        marginLeft: SIZES.small * 4.5,
+        marginTop: 10,
+        alignSelf: 'flex-end',
     },
     accountText: {
-        fontSize: Math.min(width, height) * 0.013,
+        fontSize: 12,
         color: COLORS.gray,
         fontWeight: 200,
         opacity: 0.8,
         padding: 5,
     },
     signUpText: {
-        fontSize: Math.min(width, height) * 0.013,
+        fontSize: 12,
         color: COLORS.primary,
         fontWeight: 200,
         opacity: 0.8,
         padding: 5,
     },
     smallInput: {
-        width: width * 0.2, 
-        height: height * 0.03,
+        width: smallScreen ? width * 0.7 : mediumScreen ? width * 0.5 : width * 0.3, // adjust width based on screen size
+        height: 30,
         padding: 5,
         borderWidth: 1,
         borderColor: 'black',
@@ -79,21 +81,21 @@ const styles = StyleSheet.create({
     inputContainerOne: {
         marginTop: SIZES.large * 2.8,
         marginBottom: SIZES.small,
-        marginLeft: SIZES.medium * 1.5,
+        alignItems: 'center',
     },
     inputContainerTwo: {
         marginTop: SIZES.medium,
         marginBottom: SIZES.large,
-        marginLeft: SIZES.medium * 1.5,
+        alignItems: 'center',
     },
     button: {
         fontFamily: FONT.regular,
         marginTop: SIZES.xSmall,
         marginBottom: SIZES.xSmall,
-        borderRadius: 15, 
+        borderRadius: 10, 
         width: width * 0.3,
         height: height * 0.04,
-        paddingVertical: 12,
+        paddingVertical: 15,
         alignItems: 'center',
         justifyContent: 'center',
         borderWidth: 1,

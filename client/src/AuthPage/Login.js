@@ -68,12 +68,14 @@ const LoginScreen = () => {
         <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
       </View>
       {error && <Text style={{ color: 'red' }}>{error}</Text>}
-      <View style={styles.buttonContainer}>
+      <View>
         <CustomButton onPress={handleLogin} title="Login" color={COLORS.primary} borderColor = {COLORS.primary} buttonTextStyle={styles.buttonTextWhite} />
       </View>
       <View style={styles.sameLineContainer}>
         <Text style={styles.accountText}>Don't Have Account?</Text> 
-        <Text style={styles.signUpText}>Sign Up</Text>
+        <TouchableOpacity onPress={() => navigation.navigate('SignupScreen')}>
+          <Text style={styles.signUpText}>Sign Up</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
