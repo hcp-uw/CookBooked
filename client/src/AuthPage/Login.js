@@ -42,7 +42,7 @@ const LoginScreen = () => {
         source={logo} 
         style={styles.image} 
       />
-      <Text style={styles.titleText}>Welcome back!</Text>
+      <Text style={styles.titleText}>Welcome Back!</Text>
       <View style={styles.inputContainerOne}>
         <Text style={styles.subText}>Email</Text>
         <TextInput

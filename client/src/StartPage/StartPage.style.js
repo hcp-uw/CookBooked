@@ -4,11 +4,15 @@ import { COLORS, FONT, SIZES } from "../constants";
 
 const { width, height } = Dimensions.get('window');
 
+const smallScreen = width < 480; // small screens like older phones
+const mediumScreen = width >= 480 && width < 768; // medium screens like newer phones
+const largeScreen = width >= 768;
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         // Change to 'flex-start' to align items to the top
-        justifyContent: 'flex-start', 
+        justifyContent: 'center', 
         // Change to 'center' to align items horizontally at the center
         alignItems: 'center', 
         // These cahnge the grey boarder around the page
@@ -21,7 +25,6 @@ const styles = StyleSheet.create({
         fontSize: Math.min(width, height) * 0.08,
         color: COLORS.primary,
         fontWeight: '600',
-        marginBottom: SIZES.large,
     },
     image: {
         width: "40%",
@@ -30,7 +33,7 @@ const styles = StyleSheet.create({
         marginTop: SIZES.large * 4,
     },
     buttonContainer: {
-        marginTop: height * 0.21,
+        marginTop: height * 0.15,
         marginBottom: SIZES.small * 10,
     },
     button: {
@@ -38,7 +41,7 @@ const styles = StyleSheet.create({
         marginTop: SIZES.xSmall,
         marginBottom: SIZES.xSmall,
         borderRadius: 15, 
-        width: width * 0.4,
+        width: smallScreen ? width * 0.9 : mediumScreen ? width * 0.7 : width * 0.4,
         height: height * 0.06,
         paddingVertical: 12,
         alignItems: 'center',

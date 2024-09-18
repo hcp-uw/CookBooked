@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, TextInput, Button, Text, Image, TouchableOpacity } from 'react-native';
 import { auth, db } from '../../../firebase.js';
+import { useNavigation } from '@react-navigation/native';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { ref, set } from 'firebase/database';
 import styles from './Signup.style'
@@ -23,6 +24,8 @@ const SignupScreen = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState(null);
+
+  const navigation = useNavigation();
 
   const handleSignUp = async () => {
     try {
@@ -49,13 +52,11 @@ const SignupScreen = () => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.imageContainer}>
-        <Image 
-          source={logo} 
-          style={styles.image} 
-        />
-      </View>
-      <Text style={styles.titleText}>Hello!</Text>
+      <Image 
+        source={logo} 
+        style={styles.image} 
+      />
+      <Text style={styles.titleText}>Welcome!</Text>
       <View style={styles.inputContainerOne}>
         <Text style={styles.subText}>Name</Text>
         <TextInput
@@ -106,7 +107,9 @@ const SignupScreen = () => {
       </View>
       <View style={styles.sameLineContainer}>
         <Text style={styles.accountText}>Already have an account?</Text> 
-        <Text style={styles.signUpText}>Login here</Text>
+        <TouchableOpacity onPress={() => navigation.navigate('LoginScreen')}>
+          <Text style={styles.signUpText}>Login Here</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );

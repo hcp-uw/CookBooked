@@ -4,15 +4,15 @@ import { COLORS, FONT, SIZES } from "../constants";
 
 const { width, height } = Dimensions.get('window');
 
-const smallScreen = width < 360; // small screens like older phones
-const mediumScreen = width >= 360 && width < 768; // medium screens like newer phones
+const smallScreen = width < 480; // small screens like older phones
+const mediumScreen = width >= 480 && width < 768; // medium screens like newer phones
 const largeScreen = width >= 768;
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         // Change to 'flex-start' to align items to the top
-        justifyContent: 'flex-start', 
+        justifyContent: 'center', 
         // Change to 'center' to align items horizontally at the center
         alignItems: 'center', 
         // These cahnge the grey boarder around the page
@@ -75,7 +75,6 @@ const styles = StyleSheet.create({
         width: "40%",
         height: "15%",
         resizeMode: 'contain',
-        marginTop: SIZES.large * 7,
         marginBottom: 0,
     },
     inputContainerOne: {
@@ -93,9 +92,9 @@ const styles = StyleSheet.create({
         marginTop: SIZES.xSmall,
         marginBottom: SIZES.xSmall,
         borderRadius: 10, 
-        width: width * 0.3,
-        height: height * 0.04,
-        paddingVertical: 15,
+        width: smallScreen ? width * 0.7 : mediumScreen ? width * 0.5 : width * 0.25, 
+        height: 30,
+        paddingVertical: 18,
         alignItems: 'center',
         justifyContent: 'center',
         borderWidth: 1,
