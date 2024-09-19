@@ -1,5 +1,4 @@
 import { StyleSheet } from "react-native";
-
 import { COLORS, SHADOWS, SIZES } from "../../../constants";
 
 const styles = StyleSheet.create({
@@ -8,6 +7,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: 15,
+    marginBottom: 10,
     shadowColor: COLORS.gray, // Shadow color
     shadowOffset: {
       width: 2,  // Horizontal offset
@@ -17,7 +17,6 @@ const styles = StyleSheet.create({
     shadowRadius: 5, // Blur radius of the shadow
     elevation: 5,
     borderRadius: 15,
-    padding: 10,
     position: 'relative',
   },
   logoContainer: {
@@ -55,6 +54,18 @@ const styles = StyleSheet.create({
     marginTop: 10,
     // textTransform: "capitalize",
   },
+  deleteIcon: {
+    position: 'absolute',
+    top: 20,
+    right: 20,
+    width: 25,
+    height: 25,
+    zIndex: 1
+  },
+  delete: {
+    width: '100%',
+    height: '100%',
+  }
 });
 
 export default styles;

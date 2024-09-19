@@ -7,6 +7,10 @@ var router = express.Router();
 // getting the precreated receipt data for now
 const pantryJSON = "data/pantry.json"
 
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
 // Prints out the receipt data, returns error code and message if fails
 router.get('/', async (req, res) => {
     const uri = req.query.receipt;
@@ -77,25 +81,48 @@ router.post('/', async (req, res) => {
     }
 });
 
-router.post('/add', async (req, res) => {
-    let items = req.body.items
-    let uid = req.body.uid;
-    const receiptRef = ref(db, `users/${uid}/receipts`);
-    const timestamp = new Date().toISOString().substring(0, 10);
-
-    const newReceipt = {
-        date: timestamp,
-        items: items
+router.get('/read', async (req, res) => {
+    let uid = req.query.uid;
+    const receiptsRef = ref(db, `users/${uid}/receipts`);
+    const snapshot = await get(receiptsRef);
+    if (snapshot.exists()) {
+        res.status(200).json({receipts : snapshot.val()});
+    } else {
+        res.status(200).json({receipts: {}});
     }
+})
 
-    const newReceiptRef = push(receiptRef);
-    set(newReceiptRef, newReceipt)
-        .then(() => {
-            console.log('New receipt added successfully.');
-        })
-        .catch((error) => {
-            console.error('Error adding new receipt:', error);
-        });
+router.post('/add', async (req, res) => {
+    try {
+        let items = req.body.items
+        let store = req.body.store
+        let standardizesItems = {}
+        for (const item in items) {
+            const standardizedItem = capitalizeFirstLetter(item.toLowerCase())
+            standardizesItems[standardizedItem] = items[item]
+        }
+        let uid = req.body.uid;
+        const receiptRef = ref(db, `users/${uid}/receipts`);
+        const timestamp = new Date().toISOString().substring(0, 10);
+
+        const newReceipt = {
+            date: timestamp,
+            store: store,
+            items: standardizesItems,
+        }
+
+        const newReceiptRef = push(receiptRef);
+        set(newReceiptRef, newReceipt)
+            .then(() => {
+                console.log('New receipt added successfully.');
+            })
+            .catch((error) => {
+                console.error('Error adding new receipt:', error);
+            });
+        res.status(201).json({ message: 'Receipt added successfully.' });
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to add receipt.' });
+    }
 })
 
 export default router;

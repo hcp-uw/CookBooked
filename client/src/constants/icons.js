@@ -17,6 +17,9 @@ import home from '../../assets/icons/CBHomeButton.png';
 import add from '../../assets/icons/CBAddButton.png';
 import pantry from '../../assets/icons/CBPantryButton.png';
 import edit from '../../assets/icons/edit.png'
+import trashOpen from '../../assets/icons/trash-open.png';
+import trash from '../../assets/icons/trash.png';
+
 
 export default {
   heart,
@@ -32,5 +35,7 @@ export default {
   home,
   add,
   pantry,
-  edit
+  edit,
+  trash,
+  trashOpen
 };
